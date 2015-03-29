@@ -25,63 +25,57 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
+import uk.jamierocks.atlauncher.api.objects.PackObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 29/03/15.
  */
-public class Leaderboard {
+public class Packs {
 
-    public static Response<LeaderboardUser[]> getGlobal(int limit) {
+    public static Response<PackObject[]> getAll() {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/leaderboards/global/%d/", limit),
-                    "GET"));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/all/", "GET"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, LeaderboardResponse.class);
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getGlobal() {
-        return getGlobal(30);
-    }
-
-    public static Response<LeaderboardUser[]> getPack(String packName, int limit) {
+    public static Response<PackObject[]> getPublic() {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(
-                    ATLauncherAPI.makeRequest(String.format("/leaderboards/pack/%s/%d/", packName,
-                            limit), "GET"));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/public/", "GET"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, LeaderboardResponse.class);
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getPack(String packName) {
-        return getPack(packName, 30);
-    }
-
-    public static Response<LeaderboardUser[]> getCountry(String country, int limit) {
+    public static Response<PackObject[]> getSemiPublic() {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/leaderboards/country/%s/%d/",
-                    country, limit), "GET"));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/semipublic/", "GET"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, LeaderboardResponse.class);
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getCountry(String country) {
-        return getCountry(country, 30);
+    public static Response<PackObject[]> getPrivate() {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/private/", "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    private class LeaderboardResponse extends Response<LeaderboardUser[]> {
+    private class PacksResponse extends Response<PackObject[]> {
 
     }
 }

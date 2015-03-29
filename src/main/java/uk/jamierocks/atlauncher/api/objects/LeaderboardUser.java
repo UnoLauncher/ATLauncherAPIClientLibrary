@@ -21,22 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.test;
+package uk.jamierocks.atlauncher.api.objects;
 
-import uk.jamierocks.atlauncher.api.Leaderboard;
-import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
+import java.util.Date;
 
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 29/03/15.
  */
-public class LeaderboardTest {
+public class LeaderboardUser {
 
-    public static void main(String[] args) {
-        Response<LeaderboardUser[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
-        for (LeaderboardUser user : response.getData()) {
-            System.out.println(String.format("Position: %d, Username: %s, Time played: %d, Last Played: %d", user
-                    .getPosition(), user.getUsername(), user.getTimePlayed(), user.getLastPlayed().getTime()));
-        }
+    private int position;
+    private String username;
+    private String country;
+    private int timePlayed;
+    private int lastPlayed;
+
+    /**
+     * The position of this user
+     *
+     * @return the position of the user, in the leaderboard
+     */
+    public int getPosition() {
+        return position;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public int getTimePlayed() {
+        return timePlayed;
+    }
+
+    public Date getLastPlayed() {
+        return new Date(lastPlayed);
     }
 }

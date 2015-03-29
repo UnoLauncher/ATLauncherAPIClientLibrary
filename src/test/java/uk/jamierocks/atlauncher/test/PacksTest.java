@@ -23,20 +23,19 @@
  */
 package uk.jamierocks.atlauncher.test;
 
-import uk.jamierocks.atlauncher.api.Leaderboard;
+import uk.jamierocks.atlauncher.api.Packs;
 import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
+import uk.jamierocks.atlauncher.api.objects.PackObject;
 
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 29/03/15.
  */
-public class LeaderboardTest {
+public class PacksTest {
 
     public static void main(String[] args) {
-        Response<LeaderboardUser[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
-        for (LeaderboardUser user : response.getData()) {
-            System.out.println(String.format("Position: %d, Username: %s, Time played: %d, Last Played: %d", user
-                    .getPosition(), user.getUsername(), user.getTimePlayed(), user.getLastPlayed().getTime()));
+        Response<PackObject[]> response = Packs.getPrivate();
+        for (PackObject pack : response.getData()) {
+            System.out.println(pack.getName());
         }
     }
 }
