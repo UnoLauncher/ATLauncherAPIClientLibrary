@@ -25,6 +25,8 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
+import uk.jamierocks.atlauncher.api.objects.StatsDownloads;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -33,6 +35,16 @@ import java.io.InputStreamReader;
  */
 public class Stats {
 
+    public static Response<StatsDownloads> getDownloads() {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/stats/downloads/", "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, StatsAdvancedResponse.class);
+    }
+
     public static Response<Integer> getAll() {
         InputStreamReader reader = null;
         try {
@@ -40,7 +52,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsResponse.class);
+        return GSON.fromJson(reader, StatsBasicResponse.class);
     }
 
     public static Response<Integer> getExe() {
@@ -50,7 +62,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsResponse.class);
+        return GSON.fromJson(reader, StatsBasicResponse.class);
     }
 
     public static Response<Integer> getZip() {
@@ -60,7 +72,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsResponse.class);
+        return GSON.fromJson(reader, StatsBasicResponse.class);
     }
 
     public static Response<Integer> getJar() {
@@ -70,10 +82,14 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsResponse.class);
+        return GSON.fromJson(reader, StatsBasicResponse.class);
     }
 
-    private class StatsResponse extends Response<Integer> {
+    private class StatsBasicResponse extends Response<Integer> {
 
+    }
+    
+    private class StatsAdvancedResponse extends Response<StatsDownloads> {
+        
     }
 }
