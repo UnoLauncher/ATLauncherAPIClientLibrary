@@ -23,15 +23,16 @@
  */
 package uk.jamierocks.atlauncher.api;
 
+import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
 /**
  * Created by jamie on 29/03/15.
  */
 public class Stats {
+
     public static Response<Integer> getAll() {
         InputStreamReader reader = null;
         try {
@@ -73,5 +74,6 @@ public class Stats {
     }
 
     private class StatsResponse extends Response<Integer> {
+
     }
 }

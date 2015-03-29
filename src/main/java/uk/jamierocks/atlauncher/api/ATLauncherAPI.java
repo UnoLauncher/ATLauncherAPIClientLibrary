@@ -34,8 +34,9 @@ import java.net.URL;
  * Created by jamie on 28/03/15.
  */
 class ATLauncherAPI {
+
     public static final Gson GSON = new Gson();
-    
+
     protected static InputStream makeRequest(String path, String method) throws IOException {
         URL pathUrl = new URL("https://api.atlauncher.com/v1" + path);
         HttpURLConnection con = (HttpURLConnection) pathUrl.openConnection();

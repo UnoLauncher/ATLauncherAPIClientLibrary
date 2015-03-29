@@ -23,16 +23,17 @@
  */
 package uk.jamierocks.atlauncher.api;
 
+import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
-
-import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
 /**
  * Created by jamie on 28/03/15.
  */
 public class Leaderboard {
+
     public static Response<User[]> getGlobal(int limit) {
         InputStreamReader reader = null;
         try {
@@ -54,7 +55,7 @@ public class Leaderboard {
         }
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
-    
+
     public static Response<User[]> getPack(String packName, int limit) {
         InputStreamReader reader = null;
         try {
@@ -78,7 +79,7 @@ public class Leaderboard {
         }
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
-    
+
     public static Response<User[]> getCountry(String country, int limit) {
         InputStreamReader reader = null;
         try {
@@ -89,8 +90,9 @@ public class Leaderboard {
         }
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
-    
+
     public class User {
+
         private int position;
         private String username;
         private String country;
@@ -105,24 +107,25 @@ public class Leaderboard {
         public int getPosition() {
             return position;
         }
-        
+
         public String getUsername() {
             return username;
         }
-        
+
         public String getCountry() {
             return country;
         }
-        
+
         public int getTimePlayed() {
             return timePlayed;
         }
-        
+
         public Date getLastPlayed() {
             return new Date(lastPlayed);
         }
     }
-    
+
     private class LeaderboardResponse extends Response<User[]> {
+
     }
 }

@@ -27,23 +27,24 @@ package uk.jamierocks.atlauncher.api;
  * Created by jamie on 28/03/15.
  */
 public class Response<T> {
+
     private boolean error;
     private int code;
     private String message;
     private T data;
-    
+
     public boolean getError() {
         return error;
     }
-    
+
     public int getCode() {
         return code;
     }
-    
+
     public String getMessage() {
         return message;
     }
-    
+
     public T getData() {
         return data;
     }

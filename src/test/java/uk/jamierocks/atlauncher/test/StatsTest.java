@@ -29,6 +29,7 @@ import uk.jamierocks.atlauncher.api.Stats;
  * Created by jamie on 29/03/15.
  */
 public class StatsTest {
+
     public static void main(String[] args) {
         int all = Stats.getAll().getData();
         int exe = Stats.getExe().getData();

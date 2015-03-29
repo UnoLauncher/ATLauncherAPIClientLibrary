@@ -30,9 +30,10 @@ import uk.jamierocks.atlauncher.api.Response;
  * Created by jamie on 28/03/15.
  */
 public class LeaderboardTest {
+
     public static void main(String[] args) {
         Response<Leaderboard.User[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
-        for(Leaderboard.User user : response.getData()) {
+        for (Leaderboard.User user : response.getData()) {
             System.out.println(String.format("Position: %d, Username: %s, Time played: %d, Last Played: %d", user
                     .getPosition(), user.getUsername(), user.getTimePlayed(), user.getLastPlayed().getTime()));
         }
