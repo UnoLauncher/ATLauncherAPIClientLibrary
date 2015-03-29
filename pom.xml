@@ -17,4 +17,25 @@
             <version>2.3.1</version>
         </dependency>
     </dependencies>
+    
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-file</artifactId>
+                <version>2.7</version>
+            </extension>
+        </extensions>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>uno-releases</id>
+            <url>file://${env.REPO_GLOBAL}/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>uno-snapshots</id>
+            <url>file://${env.REPO_GLOBAL}/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
