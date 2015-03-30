@@ -21,19 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.test;
+package uk.jamierocks.atlauncher.api.objects;
 
-import uk.jamierocks.atlauncher.api.Stats;
-import uk.jamierocks.atlauncher.api.objects.StatsDownloads;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by jamie on 29/03/15.
  */
-public class StatsTest {
-
-    public static void main(String[] args) {
-        StatsDownloads downloads = Stats.getOverview().getData();
-        System.out.println(String.format("All: %d, Exe: %d, Zip: %d, Jar: %d", downloads.getAll(), downloads.getExe(),
-                downloads.getZip(), downloads.getJar()));
-    }
+public enum PackType {
+    @SerializedName("public")
+    PUBLIC,
+    @SerializedName("semipublic")
+    SEMIPUBLIC,
+    @SerializedName("private")
+    PRIVATE
 }

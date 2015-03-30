@@ -73,15 +73,6 @@ public class PackObject {
         return websiteURL;
     }
 
-    public enum PackType {
-        @SerializedName("public")
-        PUBLIC,
-        @SerializedName("semipublic")
-        SEMIPUBLIC,
-        @SerializedName("private")
-        PRIVATE
-    }
-
     public class PackVersion {
 
         private String version;

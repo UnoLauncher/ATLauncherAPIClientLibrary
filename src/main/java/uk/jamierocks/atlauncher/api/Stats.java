@@ -35,14 +35,14 @@ import java.io.InputStreamReader;
  */
 public class Stats {
 
-    public static Response<StatsDownloads> getDownloads() {
+    public static Response<StatsDownloads> getOverview() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/stats/downloads/", "GET"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsAdvancedResponse.class);
+        return GSON.fromJson(reader, StatsOverviewResponse.class);
     }
 
     public static Response<Integer> getAll() {
@@ -52,7 +52,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsBasicResponse.class);
+        return GSON.fromJson(reader, StatsResponse.class);
     }
 
     public static Response<Integer> getExe() {
@@ -62,7 +62,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsBasicResponse.class);
+        return GSON.fromJson(reader, StatsResponse.class);
     }
 
     public static Response<Integer> getZip() {
@@ -72,7 +72,7 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsBasicResponse.class);
+        return GSON.fromJson(reader, StatsResponse.class);
     }
 
     public static Response<Integer> getJar() {
@@ -82,14 +82,14 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, StatsBasicResponse.class);
+        return GSON.fromJson(reader, StatsResponse.class);
     }
 
-    private class StatsBasicResponse extends Response<Integer> {
+    private class StatsResponse extends Response<Integer> {
 
     }
-    
-    private class StatsAdvancedResponse extends Response<StatsDownloads> {
-        
+
+    private class StatsOverviewResponse extends Response<StatsDownloads> {
+
     }
 }

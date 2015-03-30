@@ -26,6 +26,7 @@ package uk.jamierocks.atlauncher.api;
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
 import uk.jamierocks.atlauncher.api.objects.PackObject;
+import uk.jamierocks.atlauncher.api.objects.SimplePackObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,6 +35,16 @@ import java.io.InputStreamReader;
  * Created by jamie on 29/03/15.
  */
 public class Packs {
+
+    public static Response<SimplePackObject[]> getSimple() {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/simple/", "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, SimplePacksResponse.class);
+    }
 
     public static Response<PackObject[]> getAll() {
         InputStreamReader reader = null;
@@ -76,6 +87,10 @@ public class Packs {
     }
 
     private class PacksResponse extends Response<PackObject[]> {
+
+    }
+
+    private class SimplePacksResponse extends Response<SimplePackObject[]> {
 
     }
 }
