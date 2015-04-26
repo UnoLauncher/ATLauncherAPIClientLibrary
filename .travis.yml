@@ -12,7 +12,7 @@ env:
   global:
     - LEX_DEPLOY=https://github.com/LexBot/Deploy.git DEPLOY_ROOT=/tmp/lex/deploy
     - GIT_REPO=git@github.com:UnoLauncher/Repo.git
-    - secure: "QkPuiwAZ+ljKHEXt+WvLcwkomdjtdcpjX/eYP4d9dRh/fBcEHZCruJqX/KYnTBLKyn0l7V8GvlKILRTDB4nl6bfRIHuc4HrFaT/IrnOABLQ51iJ2YrF4UrBkZI4J0CmwrsD8JA1qUKWT7t1suOhSRu8YLUwbPjuDmgvICbLSxnI="
+    - secure: "hcZkmRrV4KSYXARx/BVkW1u0o9nQHHyXNr1zVKJFXKy+8CkkQTQyK7ZCHC1L9SU/ow//AZj4NBJp/ODcIV/Cs2KIF8XKX1RBqpw8jjLyCkN3sVcV00WN4G4rSBakfSyb/ULL5Y2Chklceh1QMBfiiDY7zKU0t4iEmHh5/LqLFQs="
 after_success:
   - git clone $LEX_DEPLOY $DEPLOY_ROOT && $DEPLOY_ROOT/maven_repo "mvn source:jar javadoc:jar deploy"
 notifications:
