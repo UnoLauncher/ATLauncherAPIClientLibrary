@@ -23,49 +23,45 @@
  */
 package uk.jamierocks.atlauncher.api;
 
+import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
+
+import uk.jamierocks.atlauncher.api.objects.PackObject;
+import uk.jamierocks.atlauncher.api.objects.PackVersionObject;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 27/04/2015.
  */
-public class Response<T> {
+public class Pack {
 
-    private boolean error;
-    private int code;
-    private String message;
-    private T data;
-
-    /**
-     * Returns weather an error was encountered
-     *
-     * @return {@code true} if an error was encountered
-     */
-    public boolean getError() {
-        return error;
+    public static Response<PackObject> getPack(String name) {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/pack/%s/", name), "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, PackObjectResponse.class);
     }
 
-    /**
-     * Gets the response code of the call
-     *
-     * @return the response call
-     */
-    public int getCode() {
-        return code;
+    public static Response<PackVersionObject> getPackVersion(String name, String version) {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/pack/%s/%s/", name, version),
+                    "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, PackVersionResponse.class);
     }
 
-    /**
-     * Returns a message, if one is present
-     *
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
+    private class PackObjectResponse extends Response<PackObject> {
+
     }
 
-    /**
-     * Returns the data received
-     *
-     * @return the data received
-     */
-    public T getData() {
-        return data;
+    private class PackVersionResponse extends Response<PackVersionObject> {
+
     }
 }
