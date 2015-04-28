@@ -21,51 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api;
+package uk.jamierocks.atlauncher.api.objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 28/04/15.
  */
-public class Response<T> {
+public class NewsObject {
 
-    private boolean error;
-    private int code;
-    private String message;
-    private T data;
+    private String title;
+    private int comments;
+    private String link;
+    @SerializedName("published_at")
+    private int published;
+    private String content;
 
-    /**
-     * Returns weather an error was encountered
-     *
-     * @return {@code true} if an error was encountered
-     */
-    public boolean getError() {
-        return error;
+    public String getTitle() {
+        return title;
     }
 
-    /**
-     * Gets the response code of the call
-     *
-     * @return the response code
-     */
-    public int getCode() {
-        return code;
+    public int getComments() {
+        return comments;
     }
 
-    /**
-     * Returns a message, if one is present
-     *
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
+    public String getLink() {
+        return link;
     }
 
-    /**
-     * Returns the data received
-     *
-     * @return the data received
-     */
-    public T getData() {
-        return data;
+    public Date getPublished() {
+        return new Date(published);
+    }
+
+    public String getContent() {
+        return content;
     }
 }

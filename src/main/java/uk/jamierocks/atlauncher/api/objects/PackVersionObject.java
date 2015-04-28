@@ -23,6 +23,8 @@
  */
 package uk.jamierocks.atlauncher.api.objects;
 
+import java.util.Date;
+
 /**
  * Created by jamie on 27/04/15.
  */
@@ -47,8 +49,8 @@ public class PackVersionObject {
         return recommended;
     }
 
-    public int getPublished() {
-        return published;
+    public Date getPublished() {
+        return new Date(published);
     }
 
     public String getServerZipURL() {

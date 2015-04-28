@@ -23,49 +23,29 @@
  */
 package uk.jamierocks.atlauncher.api;
 
+import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
+
+import uk.jamierocks.atlauncher.api.objects.NewsObject;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
- * Created by jamie on 28/03/15.
+ * Created by jamie on 28/04/15.
  */
-public class Response<T> {
+public class News {
 
-    private boolean error;
-    private int code;
-    private String message;
-    private T data;
-
-    /**
-     * Returns weather an error was encountered
-     *
-     * @return {@code true} if an error was encountered
-     */
-    public boolean getError() {
-        return error;
+    public static Response<NewsObject[]> getNews() {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/news/", "GET"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, NewsObjectResponse.class);
     }
 
-    /**
-     * Gets the response code of the call
-     *
-     * @return the response code
-     */
-    public int getCode() {
-        return code;
-    }
+    private class NewsObjectResponse extends Response<NewsObject[]> {
 
-    /**
-     * Returns a message, if one is present
-     *
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Returns the data received
-     *
-     * @return the data received
-     */
-    public T getData() {
-        return data;
     }
 }
