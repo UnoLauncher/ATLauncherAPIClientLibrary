@@ -24,7 +24,7 @@
 package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.Stats;
-import uk.jamierocks.atlauncher.api.objects.StatsDownloads;
+import uk.jamierocks.atlauncher.api.objects.DownloadStatsObject;
 
 /**
  * Created by jamie on 29/03/15.
@@ -32,7 +32,7 @@ import uk.jamierocks.atlauncher.api.objects.StatsDownloads;
 public class StatsTest {
 
     public static void main(String[] args) {
-        StatsDownloads downloads = Stats.getOverview().getData();
+        DownloadStatsObject downloads = Stats.getOverview().getData();
         System.out.println(String.format("All: %d, Exe: %d, Zip: %d, Jar: %d", downloads.getAll(), downloads.getExe(),
                 downloads.getZip(), downloads.getJar()));
     }

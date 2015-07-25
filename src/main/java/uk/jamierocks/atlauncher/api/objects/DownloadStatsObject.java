@@ -26,7 +26,7 @@ package uk.jamierocks.atlauncher.api.objects;
 /**
  * Created by jamie on 29/03/15.
  */
-public class StatsDownloads {
+public class DownloadStatsObject {
 
     private int all;
     private int exe;

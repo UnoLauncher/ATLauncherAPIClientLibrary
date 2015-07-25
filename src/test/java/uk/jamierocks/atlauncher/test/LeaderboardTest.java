@@ -25,7 +25,7 @@ package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.Leaderboard;
 import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
+import uk.jamierocks.atlauncher.api.objects.LeaderboardUserObject;
 
 /**
  * Created by jamie on 28/03/15.
@@ -33,8 +33,8 @@ import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
 public class LeaderboardTest {
 
     public static void main(String[] args) {
-        Response<LeaderboardUser[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
-        for (LeaderboardUser user : response.getData()) {
+        Response<LeaderboardUserObject[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
+        for (LeaderboardUserObject user : response.getData()) {
             System.out.println(String.format("Position: %d, Username: %s, Time played: %d, Last Played: %d", user
                     .getPosition(), user.getUsername(), user.getTimePlayed(), user.getLastPlayed().getTime()));
         }

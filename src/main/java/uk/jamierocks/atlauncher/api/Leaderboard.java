@@ -25,7 +25,7 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUser;
+import uk.jamierocks.atlauncher.api.objects.LeaderboardUserObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,7 +35,7 @@ import java.io.InputStreamReader;
  */
 public class Leaderboard {
 
-    public static Response<LeaderboardUser[]> getGlobal(int limit) {
+    public static Response<LeaderboardUserObject[]> getGlobal(int limit) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/leaderboards/global/%d/", limit),
@@ -46,11 +46,11 @@ public class Leaderboard {
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getGlobal() {
+    public static Response<LeaderboardUserObject[]> getGlobal() {
         return getGlobal(30);
     }
 
-    public static Response<LeaderboardUser[]> getPack(String packName, int limit) {
+    public static Response<LeaderboardUserObject[]> getPack(String packName, int limit) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(
@@ -62,11 +62,11 @@ public class Leaderboard {
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getPack(String packName) {
+    public static Response<LeaderboardUserObject[]> getPack(String packName) {
         return getPack(packName, 30);
     }
 
-    public static Response<LeaderboardUser[]> getCountry(String country, int limit) {
+    public static Response<LeaderboardUserObject[]> getCountry(String country, int limit) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/leaderboards/country/%s/%d/",
@@ -77,11 +77,11 @@ public class Leaderboard {
         return GSON.fromJson(reader, LeaderboardResponse.class);
     }
 
-    public static Response<LeaderboardUser[]> getCountry(String country) {
+    public static Response<LeaderboardUserObject[]> getCountry(String country) {
         return getCountry(country, 30);
     }
 
-    private class LeaderboardResponse extends Response<LeaderboardUser[]> {
+    private class LeaderboardResponse extends Response<LeaderboardUserObject[]> {
 
     }
 }

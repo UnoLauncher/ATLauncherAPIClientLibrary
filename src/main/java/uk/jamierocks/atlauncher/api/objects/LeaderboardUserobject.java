@@ -28,7 +28,7 @@ import java.util.Date;
 /**
  * Created by jamie on 29/03/15.
  */
-public class LeaderboardUser {
+public class LeaderboardUserObject {
 
     private int position;
     private String username;
