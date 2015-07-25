@@ -1,4 +1,4 @@
-This file is part of ATLauncher-Java--API, licensed under the MIT License (MIT).
+This file is part of ATLauncher-API--Java, licensed under the MIT License (MIT).
 
 Copyright (c) 2015, Jamie Mansfield <https://github.com/jamierocks>
 
