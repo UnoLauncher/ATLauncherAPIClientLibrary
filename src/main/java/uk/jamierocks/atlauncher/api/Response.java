@@ -23,9 +23,6 @@
  */
 package uk.jamierocks.atlauncher.api;
 
-/**
- * Created by jamie on 28/03/15.
- */
 public class Response<T> {
 
     private boolean error;

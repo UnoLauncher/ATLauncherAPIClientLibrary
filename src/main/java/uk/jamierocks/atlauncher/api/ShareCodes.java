@@ -30,9 +30,6 @@ import uk.jamierocks.atlauncher.api.objects.ShareCodeObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 25/07/15.
- */
 public class ShareCodes {
 
     public static Response<ShareCodeObject> getShareCode(String sharecode) {

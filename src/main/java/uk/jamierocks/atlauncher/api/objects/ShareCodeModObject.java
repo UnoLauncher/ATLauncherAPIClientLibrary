@@ -23,9 +23,6 @@
  */
 package uk.jamierocks.atlauncher.api.objects;
 
-/**
- * Created by jamie on 25/07/15.
- */
 public class ShareCodeModObject {
 
     private OptionalMod[] optional;

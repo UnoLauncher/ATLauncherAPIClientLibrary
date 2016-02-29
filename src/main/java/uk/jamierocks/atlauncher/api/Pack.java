@@ -31,9 +31,6 @@ import uk.jamierocks.atlauncher.api.objects.PackVersionObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 27/04/2015.
- */
 public class Pack {
 
     public static Response<PackObject> getPack(String name) {

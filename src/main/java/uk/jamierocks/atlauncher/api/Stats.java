@@ -30,9 +30,6 @@ import uk.jamierocks.atlauncher.api.objects.DownloadStatsObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 29/03/15.
- */
 public class Stats {
 
     public static Response<DownloadStatsObject> getOverview() {

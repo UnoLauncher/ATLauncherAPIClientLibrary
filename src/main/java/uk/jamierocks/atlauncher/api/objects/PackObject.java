@@ -27,9 +27,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-/**
- * Created by jamie on 29/03/15.
- */
 public class PackObject {
 
     private int id;

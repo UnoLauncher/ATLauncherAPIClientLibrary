@@ -30,9 +30,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by jamie on 28/03/15.
- */
 public class ATLauncherAPI {
 
     protected static final Gson GSON = new Gson();

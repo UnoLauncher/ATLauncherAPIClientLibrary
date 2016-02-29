@@ -25,9 +25,6 @@ package uk.jamierocks.atlauncher.api.objects;
 
 import java.util.Date;
 
-/**
- * Created by jamie on 27/04/15.
- */
 public class PackVersionObject {
 
     private String version;

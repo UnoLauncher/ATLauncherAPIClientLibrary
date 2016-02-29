@@ -25,9 +25,6 @@ package uk.jamierocks.atlauncher.api.objects;
 
 import uk.jamierocks.atlauncher.api.Pack;
 
-/**
- * Created by jamie on 25/07/15.
- */
 public class ShareCodeObject {
 
     private String code;

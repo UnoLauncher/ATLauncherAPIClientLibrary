@@ -30,9 +30,6 @@ import uk.jamierocks.atlauncher.api.objects.LeaderboardUserObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 28/03/15.
- */
 public class Leaderboard {
 
     public static Response<LeaderboardUserObject[]> getGlobal(int limit) {

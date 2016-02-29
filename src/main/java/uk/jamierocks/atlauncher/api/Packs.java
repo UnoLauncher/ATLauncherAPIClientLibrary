@@ -31,9 +31,6 @@ import uk.jamierocks.atlauncher.api.objects.SimplePackObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 29/03/15.
- */
 public class Packs {
 
     public static Response<SimplePackObject[]> getSimple() {

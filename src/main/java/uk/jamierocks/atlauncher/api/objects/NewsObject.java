@@ -27,9 +27,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-/**
- * Created by jamie on 28/04/15.
- */
 public class NewsObject {
 
     private String title;

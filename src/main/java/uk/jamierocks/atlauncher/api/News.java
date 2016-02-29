@@ -30,9 +30,6 @@ import uk.jamierocks.atlauncher.api.objects.NewsObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by jamie on 28/04/15.
- */
 public class News {
 
     public static Response<NewsObject[]> getNews() {
