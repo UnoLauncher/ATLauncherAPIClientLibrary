@@ -26,42 +26,45 @@ package uk.jamierocks.atlauncher.api.psp;
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
 import uk.jamierocks.atlauncher.api.ATLauncherAPI;
-import uk.jamierocks.atlauncher.api.psp.model.PspPackModel;
-import uk.jamierocks.atlauncher.api.psp.model.PspPackVersionModel;
+import uk.jamierocks.atlauncher.api.model.PackModel;
 import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PspPack {
+public class PspPacks {
 
-    public static Response<PspPackModel> getPack(String apiKey, String name) {
+    public static Response<PackModel[]> getPublic(String apiKey) {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(
-                    ATLauncherAPI.makeRequest(String.format("/psp/pack/%s/", name), "GET", apiKey));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/psp/packs/full/public/", "GET", apiKey));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, PackResponse.class);
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<PspPackVersionModel> getPackVersion(String apiKey, String name, String version) {
+    public static Response<PackModel[]> getSemiPublic(String apiKey) {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(
-                    ATLauncherAPI.makeRequest(String.format("/psp/pack/%s/%s/", name, version), "GET", apiKey));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/psp/packs/full/semipublic/", "GET", apiKey));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, PackVersionResponse.class);
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    private class PackResponse extends Response<PspPackModel> {
-
+    public static Response<PackModel[]> getPrivate(String apiKey) {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest("/psp/packs/full/private/", "GET", apiKey));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    private class PackVersionResponse extends Response<PspPackVersionModel> {
+    private class PacksResponse extends Response<PackModel[]> {
 
     }
 }

@@ -26,42 +26,26 @@ package uk.jamierocks.atlauncher.api.psp;
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
 import uk.jamierocks.atlauncher.api.ATLauncherAPI;
-import uk.jamierocks.atlauncher.api.psp.model.PspPackModel;
-import uk.jamierocks.atlauncher.api.psp.model.PspPackVersionModel;
+import uk.jamierocks.atlauncher.api.psp.model.PspShareCodeModel;
 import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PspPack {
+public class PspShareCode {
 
-    public static Response<PspPackModel> getPack(String apiKey, String name) {
+    public static Response<PspShareCodeModel> getShareCode(String apiKey, String sharecode) {
         InputStreamReader reader = null;
         try {
-            reader = new InputStreamReader(
-                    ATLauncherAPI.makeRequest(String.format("/psp/pack/%s/", name), "GET", apiKey));
+            reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/psp/share-code/%s/", sharecode),
+                    "GET", apiKey));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GSON.fromJson(reader, PackResponse.class);
+        return GSON.fromJson(reader, ShareCodesResponse.class);
     }
 
-    public static Response<PspPackVersionModel> getPackVersion(String apiKey, String name, String version) {
-        InputStreamReader reader = null;
-        try {
-            reader = new InputStreamReader(
-                    ATLauncherAPI.makeRequest(String.format("/psp/pack/%s/%s/", name, version), "GET", apiKey));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return GSON.fromJson(reader, PackVersionResponse.class);
-    }
-
-    private class PackResponse extends Response<PspPackModel> {
-
-    }
-
-    private class PackVersionResponse extends Response<PspPackVersionModel> {
+    private class ShareCodesResponse extends Response<PspShareCodeModel> {
 
     }
 }
