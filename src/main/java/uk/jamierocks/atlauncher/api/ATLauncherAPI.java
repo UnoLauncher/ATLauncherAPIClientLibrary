@@ -30,9 +30,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ATLauncherAPI {
+public final class ATLauncherAPI {
 
-    protected static final Gson GSON = new Gson();
+    public static final Gson GSON = new Gson();
     private static String BASE_URL = "https://api.atlauncher.com/v1";
 
     public static InputStream makeRequest(String path, String method) throws IOException {
@@ -41,6 +41,17 @@ public class ATLauncherAPI {
 
         con.setRequestMethod(method);
         con.setRequestProperty("User-Agent", "java/atlauncher-api");
+
+        return con.getInputStream();
+    }
+
+    public static InputStream makeRequest(String path, String method, String apiKey) throws IOException {
+        URL pathUrl = new URL(BASE_URL + path);
+        HttpURLConnection con = (HttpURLConnection) pathUrl.openConnection();
+
+        con.setRequestMethod(method);
+        con.setRequestProperty("User-Agent", "java/atlauncher-api");
+        con.setRequestProperty("API-Key", apiKey);
 
         return con.getInputStream();
     }
