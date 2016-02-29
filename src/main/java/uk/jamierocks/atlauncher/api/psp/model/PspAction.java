@@ -31,8 +31,8 @@ public class PspAction {
     private String directory;
     private boolean extract;
 
-    public int getStage() {
-        return this.stage;
+    public Stage getStage() {
+        return Stage.get(this.stage);
     }
 
     public String getUrl() {
@@ -49,5 +49,21 @@ public class PspAction {
 
     public boolean shouldExtract() {
         return this.extract;
+    }
+
+    public enum Stage {
+        LIBRARIES,
+        MODS,
+        XML_ACTIONS,
+        CONFIGS;
+
+        public static Stage get(int n) {
+            for (Stage stage : values()) {
+                if (stage.ordinal() == (n - 1)) {
+                    return stage;
+                }
+            }
+            return null;
+        }
     }
 }

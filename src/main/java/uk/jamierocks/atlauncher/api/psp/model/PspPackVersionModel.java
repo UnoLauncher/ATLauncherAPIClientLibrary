@@ -23,6 +23,8 @@
  */
 package uk.jamierocks.atlauncher.api.psp.model;
 
+import java.util.Date;
+
 public class PspPackVersionModel {
 
     private String version;
@@ -42,8 +44,8 @@ public class PspPackVersionModel {
         return this.minecraftVersion;
     }
 
-    public int getPublished() {
-        return this.published;
+    public Date getPublished() {
+        return new Date(this.published);
     }
 
     public String getChangelog() {
