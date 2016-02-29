@@ -1,7 +1,7 @@
 /*
  * This file is part of ATLauncher-API--Java, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2015, Jamie Mansfield <https://github.com/jamierocks>
+ * Copyright (c) 2015-2016, Jamie Mansfield <https://github.com/jamierocks>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,6 @@ import uk.jamierocks.atlauncher.api.Leaderboard;
 import uk.jamierocks.atlauncher.api.Response;
 import uk.jamierocks.atlauncher.api.objects.LeaderboardUserObject;
 
-/**
- * Created by jamie on 28/03/15.
- */
 public class LeaderboardTest {
 
     public static void main(String[] args) {

@@ -1,20 +1,21 @@
 plugins {
     id 'java'
-
-    id 'maven-publish'
+    id 'maven'
 
     id 'idea'
     id 'eclipse'
 
-    id 'com.github.hierynomus.license' version '0.11.0'
+    id 'net.minecrell.licenser' version '0.1.2'
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 group = 'uk.jamierocks.atlauncher'
 archivesBaseName = 'api'
 version = '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+description = "ATLauncher-API--Java - Representation of the ATLauncher API for Java."
+ext.url = 'http://uno.jamierocks.uk/'
 
 repositories {
     mavenCentral()
@@ -26,24 +27,66 @@ dependencies {
 
 license {
     header file('HEADER.txt')
-    strictCheck true
-    include "**/*.java"
-    mapping {
-        java = 'SLASHSTAR_STYLE'
-    }
+    include '**/*.java'
+    newLine = false
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId project.archivesBaseName
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
 
-            from components.java
+task sourcesJar(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
 
-            repositories {
-                maven {
-                    url = System.getenv('REPO_' + (version.endsWith('-SNAPSHOT') ? 'SNAPSHOTS' : 'RELEASES')) ?:
-                            "$buildDir/repo"
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (project.hasProperty('lexRepoUser') && project.hasProperty('lexRepoPass')) {
+                // Lexteam Maven Repository
+                repository(url: 'http://lex1.lexteam.xyz:8888/repository/internal/') {
+                    authentication(userName: lexRepoUser, password: lexRepoPass)
+                }
+
+                snapshotRepository(url: 'http://lex1.lexteam.xyz:8888/repository/snapshots/') {
+                    authentication(userName: lexRepoUser, password: lexRepoPass)
+                }
+            }
+
+            pom {
+                artifactId = project.archivesBaseName.toLowerCase()
+
+                project {
+                    name = project.archivesBaseName
+                    description = project.description
+                    packaging = 'jar'
+                    url = project.url
+
+                    scm {
+                        url = "https://github.com/UnoLauncher/ATLauncher-API--Java"
+                        connection = "scm:git:https://github.com/UnoLauncher/ATLauncher-API--Java.git"
+                        developerConnection = "scm:git:git@github.com:UnoLauncher/ATLauncher-API--Java.git"
+                    }
+
+                    issueManagement {
+                        system = 'GitHub'
+                        url = 'https://github.com/UnoLauncher/ATLauncher-API--Java/issues'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'http://opensource.org/licenses/MIT'
+                            distribution = 'repo'
+                        }
+                    }
                 }
             }
         }
@@ -51,5 +94,5 @@ publishing {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.5'
+    gradleVersion = '2.11'
 }

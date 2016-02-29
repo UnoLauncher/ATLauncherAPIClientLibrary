@@ -1,7 +1,7 @@
 /*
  * This file is part of ATLauncher-API--Java, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2015, Jamie Mansfield <https://github.com/jamierocks>
+ * Copyright (c) 2015-2016, Jamie Mansfield <https://github.com/jamierocks>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,6 @@ import uk.jamierocks.atlauncher.api.ShareCodes;
 import uk.jamierocks.atlauncher.api.objects.ShareCodeModObject;
 import uk.jamierocks.atlauncher.api.objects.ShareCodeObject;
 
-/**
- * Created by jamie on 25/07/15.
- */
 public class ShareCodesTest {
 
     public static void main(String[] args) {
