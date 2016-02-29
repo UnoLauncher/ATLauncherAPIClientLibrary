@@ -25,14 +25,15 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.ShareCodeObject;
+import uk.jamierocks.atlauncher.api.model.ShareCodeModel;
+import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ShareCodes {
 
-    public static Response<ShareCodeObject> getShareCode(String sharecode) {
+    public static Response<ShareCodeModel> getShareCode(String sharecode) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/share-codes/%s/", sharecode),
@@ -43,7 +44,7 @@ public class ShareCodes {
         return GSON.fromJson(reader, ShareCodesResponse.class);
     }
 
-    private class ShareCodesResponse extends Response<ShareCodeObject> {
+    private class ShareCodesResponse extends Response<ShareCodeModel> {
 
     }
 }

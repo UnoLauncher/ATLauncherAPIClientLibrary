@@ -21,15 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.response;
 
-import com.google.gson.annotations.SerializedName;
+public class Response<T> {
 
-public enum PackType {
-    @SerializedName("public")
-    PUBLIC,
-    @SerializedName("semipublic")
-    SEMIPUBLIC,
-    @SerializedName("private")
-    PRIVATE
+    private boolean error;
+    private int code;
+    private String message;
+    private T data;
+
+    /**
+     * Returns weather an error was encountered
+     *
+     * @return {@code true} if an error was encountered
+     */
+    public boolean getError() {
+        return error;
+    }
+
+    /**
+     * Gets the response code of the call
+     *
+     * @return the response code
+     */
+    public int getCode() {
+        return code;
+    }
+
+    /**
+     * Returns a message, if one is present
+     *
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * Returns the data received
+     *
+     * @return the data received
+     */
+    public T getData() {
+        return data;
+    }
 }

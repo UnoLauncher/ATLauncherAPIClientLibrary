@@ -24,14 +24,14 @@
 package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.Packs;
-import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.PackObject;
+import uk.jamierocks.atlauncher.api.response.Response;
+import uk.jamierocks.atlauncher.api.model.PackModel;
 
 public class PacksTest {
 
     public static void main(String[] args) {
-        Response<PackObject[]> response = Packs.getPrivate();
-        for (PackObject pack : response.getData()) {
+        Response<PackModel[]> response = Packs.getPrivate();
+        for (PackModel pack : response.getData()) {
             System.out.println(pack.getName());
         }
     }

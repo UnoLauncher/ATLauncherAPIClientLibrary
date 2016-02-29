@@ -25,14 +25,15 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.DownloadStatsObject;
+import uk.jamierocks.atlauncher.api.model.DownloadStatsModel;
+import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Stats {
 
-    public static Response<DownloadStatsObject> getOverview() {
+    public static Response<DownloadStatsModel> getOverview() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/stats/downloads/", "GET"));
@@ -86,7 +87,7 @@ public class Stats {
 
     }
 
-    private class StatsOverviewResponse extends Response<DownloadStatsObject> {
+    private class StatsOverviewResponse extends Response<DownloadStatsModel> {
 
     }
 }

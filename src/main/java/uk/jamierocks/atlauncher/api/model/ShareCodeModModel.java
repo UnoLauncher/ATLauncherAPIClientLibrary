@@ -21,28 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
-public class DownloadStatsObject {
+public class ShareCodeModModel {
 
-    private int all;
-    private int exe;
-    private int zip;
-    private int jar;
+    private OptionalMod[] optional;
 
-    public int getAll() {
-        return all;
+    public OptionalMod[] getOptionalMods() {
+        return optional;
     }
 
-    public int getExe() {
-        return exe;
-    }
+    public class OptionalMod {
 
-    public int getZip() {
-        return zip;
-    }
+        private boolean selected;
+        private String name;
 
-    public int getJar() {
-        return jar;
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }

@@ -21,36 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Date;
 
-public class SimplePackObject {
+public class LeaderboardUserModel {
 
-    private int id;
-    private String name;
-    private String safeName;
-    private PackType type;
-    @SerializedName("__LINK")
-    private String link;
+    private int position;
+    private String username;
+    private String country;
+    private int timePlayed;
+    private int lastPlayed;
 
-    public int getId() {
-        return id;
+    /**
+     * The position of this user
+     *
+     * @return the position of the user, in the leaderboard
+     */
+    public int getPosition() {
+        return position;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public String getSafeName() {
-        return safeName;
+    public String getCountry() {
+        return country;
     }
 
-    public PackType getType() {
-        return type;
+    public int getTimePlayed() {
+        return timePlayed;
     }
 
-    public String getLink() {
-        return link;
+    public Date getLastPlayed() {
+        return new Date(lastPlayed);
     }
 }

@@ -21,40 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
 import java.util.Date;
 
-public class LeaderboardUserObject {
+public class PackVersionModel {
 
-    private int position;
-    private String username;
-    private String country;
-    private int timePlayed;
-    private int lastPlayed;
+    private String version;
+    private String minecraftVersion;
+    private boolean recommended;
+    private int published;
+    private String serverZipURL;
+    private String changelog;
 
-    /**
-     * The position of this user
-     *
-     * @return the position of the user, in the leaderboard
-     */
-    public int getPosition() {
-        return position;
+    public String getVersion() {
+        return version;
     }
 
-    public String getUsername() {
-        return username;
+    public String getMinecraftVersion() {
+        return minecraftVersion;
     }
 
-    public String getCountry() {
-        return country;
+    public boolean isRecommended() {
+        return recommended;
     }
 
-    public int getTimePlayed() {
-        return timePlayed;
+    public Date getPublished() {
+        return new Date(published);
     }
 
-    public Date getLastPlayed() {
-        return new Date(lastPlayed);
+    public String getServerZipURL() {
+        return serverZipURL;
+    }
+
+    public String getChangelog() {
+        return changelog;
     }
 }

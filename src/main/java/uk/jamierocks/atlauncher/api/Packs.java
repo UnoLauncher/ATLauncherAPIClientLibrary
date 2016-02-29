@@ -25,15 +25,16 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.PackObject;
-import uk.jamierocks.atlauncher.api.objects.SimplePackObject;
+import uk.jamierocks.atlauncher.api.model.PackModel;
+import uk.jamierocks.atlauncher.api.model.SimplePackModel;
+import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Packs {
 
-    public static Response<SimplePackObject[]> getSimple() {
+    public static Response<SimplePackModel[]> getSimple() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/simple/", "GET"));
@@ -43,7 +44,7 @@ public class Packs {
         return GSON.fromJson(reader, SimplePacksResponse.class);
     }
 
-    public static Response<PackObject[]> getAll() {
+    public static Response<PackModel[]> getAll() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/all/", "GET"));
@@ -53,7 +54,7 @@ public class Packs {
         return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<PackObject[]> getPublic() {
+    public static Response<PackModel[]> getPublic() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/public/", "GET"));
@@ -63,7 +64,7 @@ public class Packs {
         return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<PackObject[]> getSemiPublic() {
+    public static Response<PackModel[]> getSemiPublic() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/semipublic/", "GET"));
@@ -73,7 +74,7 @@ public class Packs {
         return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    public static Response<PackObject[]> getPrivate() {
+    public static Response<PackModel[]> getPrivate() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/packs/full/private/", "GET"));
@@ -83,11 +84,11 @@ public class Packs {
         return GSON.fromJson(reader, PacksResponse.class);
     }
 
-    private class PacksResponse extends Response<PackObject[]> {
+    private class PacksResponse extends Response<PackModel[]> {
 
     }
 
-    private class SimplePacksResponse extends Response<SimplePackObject[]> {
+    private class SimplePacksResponse extends Response<SimplePackModel[]> {
 
     }
 }

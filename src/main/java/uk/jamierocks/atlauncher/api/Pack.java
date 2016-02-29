@@ -25,15 +25,16 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.PackObject;
-import uk.jamierocks.atlauncher.api.objects.PackVersionObject;
+import uk.jamierocks.atlauncher.api.model.PackModel;
+import uk.jamierocks.atlauncher.api.model.PackVersionModel;
+import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Pack {
 
-    public static Response<PackObject> getPack(String name) {
+    public static Response<PackModel> getPack(String name) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/pack/%s/", name), "GET"));
@@ -43,7 +44,7 @@ public class Pack {
         return GSON.fromJson(reader, PackObjectResponse.class);
     }
 
-    public static Response<PackVersionObject> getPackVersion(String name, String version) {
+    public static Response<PackVersionModel> getPackVersion(String name, String version) {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest(String.format("/pack/%s/%s/", name, version),
@@ -54,11 +55,11 @@ public class Pack {
         return GSON.fromJson(reader, PackVersionResponse.class);
     }
 
-    private class PackObjectResponse extends Response<PackObject> {
+    private class PackObjectResponse extends Response<PackModel> {
 
     }
 
-    private class PackVersionResponse extends Response<PackVersionObject> {
+    private class PackVersionResponse extends Response<PackVersionModel> {
 
     }
 }

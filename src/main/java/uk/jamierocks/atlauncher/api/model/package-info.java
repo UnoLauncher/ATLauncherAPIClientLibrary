@@ -21,38 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
-public class NewsObject {
-
-    private String title;
-    private int comments;
-    private String link;
-    @SerializedName("published_at")
-    private int published;
-    private String content;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public Date getPublished() {
-        return new Date(published);
-    }
-
-    public String getContent() {
-        return content;
-    }
-}
+package uk.jamierocks.atlauncher.api.model;

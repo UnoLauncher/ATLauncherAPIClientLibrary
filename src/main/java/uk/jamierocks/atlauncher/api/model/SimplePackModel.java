@@ -21,35 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
-import uk.jamierocks.atlauncher.api.Pack;
+import com.google.gson.annotations.SerializedName;
 
-public class ShareCodeObject {
+public class SimplePackModel {
 
-    private String code;
-    private String pack;
-    private String version;
-    private int used;
-    private ShareCodeModObject mods;
+    private int id;
+    private String name;
+    private String safeName;
+    private PackType type;
+    @SerializedName("__LINK")
+    private String link;
 
-    public String getCode() {
-        return code;
+    public int getId() {
+        return id;
     }
 
-    public PackObject getPack() {
-        return Pack.getPack(pack).getData();
+    public String getName() {
+        return name;
     }
 
-    public String getVersion() {
-        return version;
+    public String getSafeName() {
+        return safeName;
     }
 
-    public int getUsed() {
-        return used;
+    public PackType getType() {
+        return type;
     }
 
-    public ShareCodeModObject getMods() {
-        return mods;
+    public String getLink() {
+        return link;
     }
 }

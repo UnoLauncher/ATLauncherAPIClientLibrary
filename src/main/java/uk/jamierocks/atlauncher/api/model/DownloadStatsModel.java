@@ -21,4 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
+
+public class DownloadStatsModel {
+
+    private int all;
+    private int exe;
+    private int zip;
+    private int jar;
+
+    public int getAll() {
+        return all;
+    }
+
+    public int getExe() {
+        return exe;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public int getJar() {
+        return jar;
+    }
+}

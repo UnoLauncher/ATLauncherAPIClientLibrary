@@ -24,14 +24,14 @@
 package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.News;
-import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.NewsObject;
+import uk.jamierocks.atlauncher.api.response.Response;
+import uk.jamierocks.atlauncher.api.model.NewsModel;
 
 public class NewsTest {
 
     public static void main(String[] args) {
-        Response<NewsObject[]> response = News.getNews();
-        for (NewsObject news : response.getData()) {
+        Response<NewsModel[]> response = News.getNews();
+        for (NewsModel news : response.getData()) {
             System.out.println(news.getTitle());
         }
     }

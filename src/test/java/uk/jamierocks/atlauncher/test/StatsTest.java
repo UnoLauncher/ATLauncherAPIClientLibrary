@@ -24,12 +24,12 @@
 package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.Stats;
-import uk.jamierocks.atlauncher.api.objects.DownloadStatsObject;
+import uk.jamierocks.atlauncher.api.model.DownloadStatsModel;
 
 public class StatsTest {
 
     public static void main(String[] args) {
-        DownloadStatsObject downloads = Stats.getOverview().getData();
+        DownloadStatsModel downloads = Stats.getOverview().getData();
         System.out.println(String.format("All: %d, Exe: %d, Zip: %d, Jar: %d", downloads.getAll(), downloads.getExe(),
                 downloads.getZip(), downloads.getJar()));
     }

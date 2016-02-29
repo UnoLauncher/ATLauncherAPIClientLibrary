@@ -25,14 +25,15 @@ package uk.jamierocks.atlauncher.api;
 
 import static uk.jamierocks.atlauncher.api.ATLauncherAPI.GSON;
 
-import uk.jamierocks.atlauncher.api.objects.NewsObject;
+import uk.jamierocks.atlauncher.api.model.NewsModel;
+import uk.jamierocks.atlauncher.api.response.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class News {
 
-    public static Response<NewsObject[]> getNews() {
+    public static Response<NewsModel[]> getNews() {
         InputStreamReader reader = null;
         try {
             reader = new InputStreamReader(ATLauncherAPI.makeRequest("/news/", "GET"));
@@ -42,7 +43,7 @@ public class News {
         return GSON.fromJson(reader, NewsObjectResponse.class);
     }
 
-    private class NewsObjectResponse extends Response<NewsObject[]> {
+    private class NewsObjectResponse extends Response<NewsModel[]> {
 
     }
 }

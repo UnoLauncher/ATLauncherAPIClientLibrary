@@ -21,40 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
-import java.util.Date;
+import uk.jamierocks.atlauncher.api.Pack;
 
-public class PackVersionObject {
+public class ShareCodeModel {
 
+    private String code;
+    private String pack;
     private String version;
-    private String minecraftVersion;
-    private boolean recommended;
-    private int published;
-    private String serverZipURL;
-    private String changelog;
+    private int used;
+    private ShareCodeModModel mods;
+
+    public String getCode() {
+        return code;
+    }
+
+    public PackModel getPack() {
+        return Pack.getPack(pack).getData();
+    }
 
     public String getVersion() {
         return version;
     }
 
-    public String getMinecraftVersion() {
-        return minecraftVersion;
+    public int getUsed() {
+        return used;
     }
 
-    public boolean isRecommended() {
-        return recommended;
-    }
-
-    public Date getPublished() {
-        return new Date(published);
-    }
-
-    public String getServerZipURL() {
-        return serverZipURL;
-    }
-
-    public String getChangelog() {
-        return changelog;
+    public ShareCodeModModel getMods() {
+        return mods;
     }
 }

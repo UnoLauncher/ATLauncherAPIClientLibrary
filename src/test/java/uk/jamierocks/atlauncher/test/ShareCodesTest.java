@@ -23,16 +23,16 @@
  */
 package uk.jamierocks.atlauncher.test;
 
-import uk.jamierocks.atlauncher.api.Response;
+import uk.jamierocks.atlauncher.api.response.Response;
 import uk.jamierocks.atlauncher.api.ShareCodes;
-import uk.jamierocks.atlauncher.api.objects.ShareCodeModObject;
-import uk.jamierocks.atlauncher.api.objects.ShareCodeObject;
+import uk.jamierocks.atlauncher.api.model.ShareCodeModModel;
+import uk.jamierocks.atlauncher.api.model.ShareCodeModel;
 
 public class ShareCodesTest {
 
     public static void main(String[] args) {
-        Response<ShareCodeObject> response = ShareCodes.getShareCode("vca4EaZq");
-        for (ShareCodeModObject.OptionalMod mod : response.getData().getMods().getOptionalMods()) {
+        Response<ShareCodeModel> response = ShareCodes.getShareCode("vca4EaZq");
+        for (ShareCodeModModel.OptionalMod mod : response.getData().getMods().getOptionalMods()) {
             System.out.println(mod.getName());
         }
     }

@@ -24,14 +24,14 @@
 package uk.jamierocks.atlauncher.test;
 
 import uk.jamierocks.atlauncher.api.Leaderboard;
-import uk.jamierocks.atlauncher.api.Response;
-import uk.jamierocks.atlauncher.api.objects.LeaderboardUserObject;
+import uk.jamierocks.atlauncher.api.response.Response;
+import uk.jamierocks.atlauncher.api.model.LeaderboardUserModel;
 
 public class LeaderboardTest {
 
     public static void main(String[] args) {
-        Response<LeaderboardUserObject[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
-        for (LeaderboardUserObject user : response.getData()) {
+        Response<LeaderboardUserModel[]> response = Leaderboard.getPack("YogscastCompletePack", 5);
+        for (LeaderboardUserModel user : response.getData()) {
             System.out.println(String.format("Position: %d, Username: %s, Time played: %d, Last Played: %d", user
                     .getPosition(), user.getUsername(), user.getTimePlayed(), user.getLastPlayed().getTime()));
         }

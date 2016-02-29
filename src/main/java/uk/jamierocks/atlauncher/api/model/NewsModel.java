@@ -21,77 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.atlauncher.api.objects;
+package uk.jamierocks.atlauncher.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class PackObject {
+public class NewsModel {
 
-    private int id;
-    private String name;
-    private String safeName;
-    private PackType type;
-    private PackVersion[] versions;
-    private String description;
-    private String supportURL;
-    private String websiteURL;
+    private String title;
+    private int comments;
+    private String link;
+    @SerializedName("published_at")
+    private int published;
+    private String content;
 
-    public int getId() {
-        return id;
+    public String getTitle() {
+        return title;
     }
 
-    public String getName() {
-        return name;
+    public int getComments() {
+        return comments;
     }
 
-    public String getSafeName() {
-        return safeName;
+    public String getLink() {
+        return link;
     }
 
-    public PackType getType() {
-        return type;
+    public Date getPublished() {
+        return new Date(published);
     }
 
-    public PackVersion[] getVersions() {
-        return versions;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getSupportURL() {
-        return supportURL;
-    }
-
-    public String getWebsiteURL() {
-        return websiteURL;
-    }
-
-    public class PackVersion {
-
-        private String version;
-        private String minecraft;
-        private int published;
-        @SerializedName("__LINK")
-        private String link;
-
-        public String getVersion() {
-            return version;
-        }
-
-        public String getMinecraft() {
-            return minecraft;
-        }
-
-        public Date getPublished() {
-            return new Date(published);
-        }
-
-        public String getLink() {
-            return link;
-        }
+    public String getContent() {
+        return content;
     }
 }

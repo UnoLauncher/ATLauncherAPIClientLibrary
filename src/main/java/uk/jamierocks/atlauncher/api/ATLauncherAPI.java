@@ -33,10 +33,10 @@ import java.net.URL;
 public class ATLauncherAPI {
 
     protected static final Gson GSON = new Gson();
-    private static String baseUrl = "https://api.atlauncher.com/v1";
+    private static String BASE_URL = "https://api.atlauncher.com/v1";
 
     public static InputStream makeRequest(String path, String method) throws IOException {
-        URL pathUrl = new URL("https://api.atlauncher.com/v1" + path);
+        URL pathUrl = new URL(BASE_URL + path);
         HttpURLConnection con = (HttpURLConnection) pathUrl.openConnection();
 
         con.setRequestMethod(method);
@@ -45,11 +45,11 @@ public class ATLauncherAPI {
         return con.getInputStream();
     }
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public static String getBaseUrl() {
+        return BASE_URL;
     }
 
     public static void setBaseUrl(String baseUrl) {
-        ATLauncherAPI.baseUrl = baseUrl;
+        ATLauncherAPI.BASE_URL = baseUrl;
     }
 }
