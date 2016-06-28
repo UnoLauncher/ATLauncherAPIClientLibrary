@@ -22,35 +22,27 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api;
 
-import uk.jamierocks.atlauncher.api.Route;
-import uk.jamierocks.atlauncher.api.model.LeaderboardUser;
-
-import java.util.List;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * A list of all the available responses.
+ * Represents a route.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public final class Responses {
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Route {
 
-    protected Responses() {}
-
-    @Route("/leaderboards/global/%d/")
-    public static final class GlobalLeaderboards extends Response<List<LeaderboardUser>> {
-
-    }
-
-    @Route("/leaderboards/pack/%s/%d/")
-    public static final class PackLeaderboards extends Response<List<LeaderboardUser>> {
-
-    }
-
-    @Route("/leaderboards/country/%s/%d/")
-    public static final class CountryLeaderboards extends Response<List<LeaderboardUser>> {
-
-    }
+    /**
+     * Returns the route.
+     *
+     * @return The route
+     */
+    String value();
 }
