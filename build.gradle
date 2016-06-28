@@ -5,7 +5,7 @@ plugins {
     id 'idea'
     id 'eclipse'
 
-    id 'net.minecrell.licenser' version '0.1.2'
+    id 'net.minecrell.licenser' version '0.2.1'
 }
 
 sourceCompatibility = 1.8
@@ -13,22 +13,20 @@ targetCompatibility = 1.8
 
 group = 'uk.jamierocks.atlauncher'
 archivesBaseName = 'api'
-version = '1.1.0-SNAPSHOT'
-description = "ATLauncher-API--Java - Representation of the ATLauncher API for Java."
-ext.url = 'http://uno.jamierocks.uk/'
+version = '2.0.0-SNAPSHOT'
+description = "Client library for the ATLauncher API."
+ext.url = 'https://www.jamierocks.uk/'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.6.2'
 }
 
 license {
     header file('HEADER.txt')
     include '**/*.java'
-    newLine = false
 }
 
 task javadocJar(type: Jar, dependsOn: 'javadoc') {
@@ -49,22 +47,16 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            if (project.hasProperty('lexRepoUser') && project.hasProperty('lexRepoPass')) {
-                // Lexteam Maven Repository
-                repository(url: 'http://lex1.lexteam.xyz:8888/repository/internal/') {
-                    authentication(userName: lexRepoUser, password: lexRepoPass)
-                }
-
-                snapshotRepository(url: 'http://lex1.lexteam.xyz:8888/repository/snapshots/') {
-                    authentication(userName: lexRepoUser, password: lexRepoPass)
-                }
+            if (System.getenv('MAVEN_RELEASES') != null) {
+                repository(url: 'file://' + System.getenv('MAVEN_RELEASES'))
+                snapshotRepository(url: 'file://' + System.getenv('MAVEN_SNAPSHOTS'))
             }
 
             pom {
-                artifactId = project.archivesBaseName.toLowerCase()
+                artifactId = project.archivesBaseName
 
                 project {
-                    name = project.archivesBaseName
+                    name = project.name
                     description = project.description
                     packaging = 'jar'
                     url = project.url
@@ -94,5 +86,5 @@ uploadArchives {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '2.13'
 }
