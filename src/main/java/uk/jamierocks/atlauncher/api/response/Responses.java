@@ -53,4 +53,9 @@ public final class Responses {
     public static final class CountryLeaderboards extends Response<List<LeaderboardUser>> {
 
     }
+
+    @Route("/news/")
+    public static final class News extends Response<List<uk.jamierocks.atlauncher.api.model.News>> {
+
+    }
 }
