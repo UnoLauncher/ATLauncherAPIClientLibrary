@@ -49,7 +49,7 @@ public class LeaderboardUser {
      * @return The position of the player in the leaderboard
      * @since 2.0.0
      */
-    public final int getPosition() {
+    public int getPosition() {
         return this.position;
     }
 
@@ -59,7 +59,7 @@ public class LeaderboardUser {
      * @return The username
      * @since 2.0.0
      */
-    public final String getUsername() {
+    public String getUsername() {
         return this.username;
     }
 
@@ -69,8 +69,8 @@ public class LeaderboardUser {
      * @return The 2-letter country code
      * @since 2.0.0
      */
-    public final Optional<String> getCountry() {
-        if (this.country == null || this.country.equalsIgnoreCase("") || this.country.equalsIgnoreCase("XX")) {
+    public Optional<String> getCountry() {
+        if (this.country != null && !this.country.isEmpty() && !this.country.equalsIgnoreCase("XX")) {
             return Optional.of(this.country);
         }
         return Optional.empty();
@@ -82,7 +82,7 @@ public class LeaderboardUser {
      * @return The play time of the player
      * @since 2.0.0
      */
-    public final int getTimePlayed() {
+    public int getTimePlayed() {
         return this.timePlayed;
     }
 
@@ -92,7 +92,8 @@ public class LeaderboardUser {
      * @return The last time the player played
      * @since 2.0.0
      */
-    public final Date getLastPlayed() {
+    public Date getLastPlayed() {
         return new Date(this.lastPlayed);
     }
+
 }

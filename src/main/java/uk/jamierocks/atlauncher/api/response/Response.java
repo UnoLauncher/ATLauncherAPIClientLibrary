@@ -48,7 +48,7 @@ public class Response<D> {
      * @return {@code True} if an error occurred, {@code false} otherwise
      * @since 2.0.0
      */
-    public final boolean isError() {
+    public boolean isError() {
         return this.error;
     }
 
@@ -58,7 +58,7 @@ public class Response<D> {
      * @return The API Response Code
      * @since 2.0.0
      */
-    public final int getCode() {
+    public int getCode() {
         return this.code;
     }
 
@@ -68,7 +68,7 @@ public class Response<D> {
      * @return The response message
      * @since 2.0.0
      */
-    public final Optional<String> getMessage() {
+    public Optional<String> getMessage() {
         return Optional.ofNullable(this.message);
     }
 
@@ -78,7 +78,8 @@ public class Response<D> {
      * @return The response data
      * @since 2.0.0
      */
-    public final Optional<D> getData() {
+    public Optional<D> getData() {
         return Optional.ofNullable(this.data);
     }
+
 }

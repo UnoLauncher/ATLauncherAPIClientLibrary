@@ -50,7 +50,7 @@ public class News {
      * @return The title
      * @since 2.0.0
      */
-    public final String getTitle() {
+    public String getTitle() {
         return this.title;
     }
 
@@ -60,7 +60,7 @@ public class News {
      * @return The amount of comments
      * @since 2.0.0
      */
-    public final int getComments() {
+    public int getComments() {
         return this.comments;
     }
 
@@ -70,7 +70,7 @@ public class News {
      * @return The link
      * @since 2.0.0
      */
-    public final String getLink() {
+    public String getLink() {
         return this.link;
     }
 
@@ -80,7 +80,7 @@ public class News {
      * @return The date published
      * @since 2.0.0
      */
-    public final Date getPublishedAt() {
+    public Date getPublishedAt() {
         return new Date(this.publishedAt);
     }
 
@@ -90,7 +90,8 @@ public class News {
      * @return The content
      * @since 2.0.0
      */
-    public final String getContent() {
+    public String getContent() {
         return this.content;
     }
+
 }

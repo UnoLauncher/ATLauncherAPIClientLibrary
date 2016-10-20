@@ -54,35 +54,35 @@ public class Pack {
      * @return The identifier
      * @since 2.0.0
      */
-    public final int getId() {
+    public int getId() {
         return this.id;
     }
 
-    public final String getName() {
+    public String getName() {
         return this.name;
     }
 
-    public final String getSafeName() {
+    public String getSafeName() {
         return this.safeName;
     }
 
-    public final Type getType() {
+    public Type getType() {
         return this.type;
     }
 
-    public final List<Version> getVersions() {
+    public List<Version> getVersions() {
         return this.versions;
     }
 
-    public final String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
-    public final String getSupportURL() {
+    public String getSupportURL() {
         return this.supportURL;
     }
 
-    public final String getWebsiteURL() {
+    public String getWebsiteURL() {
         return this.websiteURL;
     }
 
@@ -113,20 +113,22 @@ public class Pack {
 
         protected Version() {}
 
-        public final String getVersion() {
+        public String getVersion() {
             return this.version;
         }
 
-        public final String getMinecraft() {
+        public String getMinecraft() {
             return this.minecraft;
         }
 
-        public final Date getPublished() {
+        public Date getPublished() {
             return new Date(this.published);
         }
 
-        public final String getLink() {
+        public String getLink() {
             return this.link;
         }
+
     }
+
 }
