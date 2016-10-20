@@ -58,4 +58,9 @@ public final class Responses {
     public static final class News extends Response<List<uk.jamierocks.atlauncher.api.model.News>> {
 
     }
+
+    @Route("/pack/%s/")
+    public static final class Pack extends Response<uk.jamierocks.atlauncher.api.model.Pack> {
+
+    }
 }
