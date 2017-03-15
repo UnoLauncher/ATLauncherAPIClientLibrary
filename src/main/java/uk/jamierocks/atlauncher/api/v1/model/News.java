@@ -22,41 +22,76 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api.v1.model;
 
-import uk.jamierocks.atlauncher.api.Route;
-import uk.jamierocks.atlauncher.api.model.LeaderboardUser;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.Date;
 
 /**
- * A list of all the available responses.
+ * Represents the <a href="https://wiki.atlauncher.com/api:news_object">news object</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public final class Responses {
+public class News {
 
-    private Responses() {}
+    private String title;
+    private int comments;
+    private String link;
+    @SerializedName("published_at") private int publishedAt;
+    private String content;
 
-    @Route("/leaderboards/global/%d/")
-    public static final class GlobalLeaderboards extends Response<List<LeaderboardUser>> {
+    protected News() {}
+
+    /**
+     * Gets the title of the news article.
+     *
+     * @return The title
+     * @since 2.0.0
+     */
+    public String getTitle() {
+        return this.title;
     }
 
-    @Route("/leaderboards/pack/%s/%d/")
-    public static final class PackLeaderboards extends Response<List<LeaderboardUser>> {
+    /**
+     * Gets the amount of comments for the article.
+     *
+     * @return The amount of comments
+     * @since 2.0.0
+     */
+    public int getComments() {
+        return this.comments;
     }
 
-    @Route("/leaderboards/country/%s/%d/")
-    public static final class CountryLeaderboards extends Response<List<LeaderboardUser>> {
+    /**
+     * Gets the link of the news article.
+     *
+     * @return The link
+     * @since 2.0.0
+     */
+    public String getLink() {
+        return this.link;
     }
 
-    @Route("/news/")
-    public static final class News extends Response<List<uk.jamierocks.atlauncher.api.model.News>> {
+    /**
+     * Gets the date the article was published
+     *
+     * @return The date published
+     * @since 2.0.0
+     */
+    public Date getPublishedAt() {
+        return new Date(this.publishedAt);
     }
 
-    @Route("/pack/%s/")
-    public static final class Pack extends Response<uk.jamierocks.atlauncher.api.model.Pack> {
+    /**
+     * Gets the content of the news article.
+     *
+     * @return The content
+     * @since 2.0.0
+     */
+    public String getContent() {
+        return this.content;
     }
 
 }

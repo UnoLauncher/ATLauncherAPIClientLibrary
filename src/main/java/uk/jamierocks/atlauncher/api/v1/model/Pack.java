@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.model;
+package uk.jamierocks.atlauncher.api.v1.model;
 
 import com.google.gson.annotations.SerializedName;
 
