@@ -22,41 +22,26 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api;
 
-import uk.jamierocks.atlauncher.api.Route;
-import uk.jamierocks.atlauncher.api.model.LeaderboardUser;
-
-import java.util.List;
+import java.util.Optional;
 
 /**
- * A list of all the available responses.
+ * Represents a client that communicates with a ATLauncher-compatible API.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public final class Responses {
+public final class Client {
 
-    private Responses() {}
+    private final String apiBaseUrl;
 
-    @Route("/leaderboards/global/%d/")
-    public static final class GlobalLeaderboards extends Response<List<LeaderboardUser>> {
+    private Client(final String apiBaseUrl) {
+        this.apiBaseUrl = apiBaseUrl;
     }
 
-    @Route("/leaderboards/pack/%s/%d/")
-    public static final class PackLeaderboards extends Response<List<LeaderboardUser>> {
-    }
-
-    @Route("/leaderboards/country/%s/%d/")
-    public static final class CountryLeaderboards extends Response<List<LeaderboardUser>> {
-    }
-
-    @Route("/news/")
-    public static final class News extends Response<List<uk.jamierocks.atlauncher.api.model.News>> {
-    }
-
-    @Route("/pack/%s/")
-    public static final class Pack extends Response<uk.jamierocks.atlauncher.api.model.Pack> {
+    public <T> Optional<T> get(Class<T> responseClass, Object... replacements) {
+        return Optional.empty();
     }
 
 }
