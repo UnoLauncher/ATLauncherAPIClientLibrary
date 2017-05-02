@@ -36,9 +36,9 @@ import java.util.List;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public final class Responses {
+public final class V1Responses {
 
-    private Responses() {}
+    private V1Responses() {}
 
     @Route("/v1/leaderboards/global/%d/")
     public static final class GlobalLeaderboards extends Response<List<LeaderboardUser>> {

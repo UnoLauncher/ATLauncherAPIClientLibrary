@@ -24,6 +24,8 @@
 
 package uk.jamierocks.atlauncher.api.v1.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 import java.util.Optional;
 
@@ -35,11 +37,11 @@ import java.util.Optional;
  */
 public class LeaderboardUser {
 
-    private int position;
-    private String username;
-    private String country;
-    private int timePlayed;
-    private int lastPlayed;
+    @SerializedName("position") private int position;
+    @SerializedName("username") private String username;
+    @SerializedName("country") private String country;
+    @SerializedName("timePlayed") private int timePlayed;
+    @SerializedName("lastPlayed") private int lastPlayed;
 
     protected LeaderboardUser() {}
 

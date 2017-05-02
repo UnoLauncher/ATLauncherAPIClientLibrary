@@ -36,11 +36,11 @@ import java.util.Date;
  */
 public class News {
 
-    private String title;
-    private int comments;
-    private String link;
+    @SerializedName("title") private String title;
+    @SerializedName("comments") private int comments;
+    @SerializedName("link") private String link;
     @SerializedName("published_at") private int publishedAt;
-    private String content;
+    @SerializedName("content") private String content;
 
     protected News() {}
 

@@ -37,14 +37,14 @@ import java.util.List;
  */
 public class Pack {
 
-    private int id;
-    private String name;
-    private String safeName;
-    private Type type;
-    private List<Version> versions;
-    private String description;
-    private String supportURL;
-    private String websiteURL;
+    @SerializedName("id") private int id;
+    @SerializedName("name") private String name;
+    @SerializedName("safeName") private String safeName;
+    @SerializedName("type") private Type type;
+    @SerializedName("versions") private List<Version> versions;
+    @SerializedName("description") private String description;
+    @SerializedName("supportURL") private String supportURL;
+    @SerializedName("websiteURL") private String websiteURL;
 
     protected Pack() {}
 

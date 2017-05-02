@@ -24,6 +24,8 @@
 
 package uk.jamierocks.atlauncher.api.response;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Optional;
 
 /**
@@ -33,12 +35,12 @@ import java.util.Optional;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class Response<D> {
+public abstract class Response<D> {
 
-    private boolean error;
-    private int code;
-    private String message;
-    private D data;
+    @SerializedName("error") private boolean error;
+    @SerializedName("code") private int code;
+    @SerializedName("message") private String message;
+    @SerializedName("data") private D data;
 
     protected Response() {}
 
