@@ -26,71 +26,55 @@ package uk.jamierocks.atlauncher.api.v1.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-import java.util.List;
-
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_object">pack object</a>.
+ * The base model for the pack objects.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class Pack extends AbstractPack {
+public abstract class AbstractPack {
 
-    @SerializedName("versions") private List<Version> versions;
-    @SerializedName("description") private String description;
-    @SerializedName("supportURL") private String supportUrl;
-    @SerializedName("websiteURL") private String websiteUrl;
+    @SerializedName("id") private int id;
+    @SerializedName("name") private String name;
+    @SerializedName("safeName") private String safeName;
+    @SerializedName("type") private Type type;
 
-    protected Pack() {
-    }
-
-    public List<Version> getVersions() {
-        return this.versions;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public String getSupportUrl() {
-        return this.supportUrl;
-    }
-
-    public String getWebsiteUrl() {
-        return this.websiteUrl;
+    protected AbstractPack() {
     }
 
     /**
-     * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_array">pack version array</a>.
+     * Gets the identifier of the pack.
+     *
+     * @return The identifier
+     * @since 2.0.0
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSafeName() {
+        return this.safeName;
+    }
+
+    public Type getType() {
+        return this.type;
+    }
+
+    /**
+     * Represents the type of a pack.
      *
      * @author Jamie Mansfield
      * @since 2.0.0
      */
-    public static class Version {
+    public enum Type {
 
-        @SerializedName("version") private String version;
-        @SerializedName("minecraft") private String minecraft;
-        @SerializedName("published") private int published;
-        @SerializedName("__LINK") private String link;
-
-        protected Version() {}
-
-        public String getVersion() {
-            return this.version;
-        }
-
-        public String getMinecraft() {
-            return this.minecraft;
-        }
-
-        public Date getPublished() {
-            return new Date(this.published);
-        }
-
-        public String getLink() {
-            return this.link;
-        }
+        @SerializedName("public") PUBLIC,
+        @SerializedName("semipublic") SEMI_PUBLIC,
+        @SerializedName("private") PRIVATE
 
     }
 
