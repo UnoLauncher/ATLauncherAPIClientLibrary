@@ -22,67 +22,62 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api.v1.model.admin;
 
 import com.google.gson.annotations.SerializedName;
+import uk.jamierocks.atlauncher.api.v1.model.Pack;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
- * Represents a response from the ATLauncher API.
+ * Represents the <a href="https://wiki.atlauncher.com/api:admin_pack_object">admin pack object</a>.
  *
- * @param <D> The type of the response
  * @author Jamie Mansfield
- * @since 1.0.0
+ * @since 2.0.0
  */
-public abstract class Response<D> {
+public class AdminPack extends Pack {
 
-    @SerializedName("error") private boolean error;
-    @SerializedName("code") private int code;
-    @SerializedName("message") private String message;
-    @SerializedName("data") private D data;
+    @SerializedName("devVersions") private List<DevelopmentVersion> devVersions;
 
-    protected Response() {
+    protected AdminPack() {
+    }
+
+    public List<DevelopmentVersion> getDevVersions() {
+        return this.devVersions;
     }
 
     /**
-     * Returns weather the API experienced an error.
+     * Represents the <a href="https://wiki.atlauncher.com/api:development_pack_version_array">development pack version object</a>.
      *
-     * @return {@code True} if an error occurred, {@code false} otherwise
+     * @author Jamie Mansfield
      * @since 2.0.0
      */
-    public boolean isError() {
-        return this.error;
-    }
+    public static class DevelopmentVersion {
 
-    /**
-     * Returns the <a href="https://wiki.atlauncher.com/api:response_code"></a> for this call.
-     *
-     * @return The API Response Code
-     * @since 1.0.0
-     */
-    public int getCode() {
-        return this.code;
-    }
+        @SerializedName("version") private String version;
+        @SerializedName("minecraftVersion") private String minecraftVersion;
+        @SerializedName("lastEdited") private int lastEdited;
+        @SerializedName("__LINK") private String link;
 
-    /**
-     * Returns the message of the response, if present.
-     *
-     * @return The response message
-     * @since 2.0.0
-     */
-    public Optional<String> getMessage() {
-        return Optional.ofNullable(this.message);
-    }
+        protected DevelopmentVersion() {
+        }
 
-    /**
-     * Returns the data of the response, if present.
-     *
-     * @return The response data
-     * @since 2.0.0
-     */
-    public Optional<D> getData() {
-        return Optional.ofNullable(this.data);
+        public String getVersion() {
+            return this.version;
+        }
+
+        public String getMinecraftVersion() {
+            return this.minecraftVersion;
+        }
+
+        public int getLastEdited() {
+            return this.lastEdited;
+        }
+
+        public String getLink() {
+            return this.link;
+        }
+
     }
 
 }

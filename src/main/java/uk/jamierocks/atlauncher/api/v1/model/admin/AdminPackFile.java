@@ -22,67 +22,50 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api.v1.model.admin;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Optional;
-
 /**
- * Represents a response from the ATLauncher API.
+ * Represents the <a href="https://wiki.atlauncher.com/api:admin_pack_file_object">admin pack file object</a>.
  *
- * @param <D> The type of the response
  * @author Jamie Mansfield
- * @since 1.0.0
+ * @since 2.0.0
  */
-public abstract class Response<D> {
+public class AdminPackFile {
 
-    @SerializedName("error") private boolean error;
-    @SerializedName("code") private int code;
-    @SerializedName("message") private String message;
-    @SerializedName("data") private D data;
+    @SerializedName("filename") private String fileName;
+    @SerializedName("size") private int size;
+    @SerializedName("md5") private String md5;
+    @SerializedName("path") private String path;
+    @SerializedName("file") private boolean file;
+    @SerializedName("__LINK") private String link;
 
-    protected Response() {
+    protected AdminPackFile() {
     }
 
-    /**
-     * Returns weather the API experienced an error.
-     *
-     * @return {@code True} if an error occurred, {@code false} otherwise
-     * @since 2.0.0
-     */
-    public boolean isError() {
-        return this.error;
+    public String getFileName() {
+        return this.fileName;
     }
 
-    /**
-     * Returns the <a href="https://wiki.atlauncher.com/api:response_code"></a> for this call.
-     *
-     * @return The API Response Code
-     * @since 1.0.0
-     */
-    public int getCode() {
-        return this.code;
+    public int getSize() {
+        return this.size;
     }
 
-    /**
-     * Returns the message of the response, if present.
-     *
-     * @return The response message
-     * @since 2.0.0
-     */
-    public Optional<String> getMessage() {
-        return Optional.ofNullable(this.message);
+    public String getMd5() {
+        return this.md5;
     }
 
-    /**
-     * Returns the data of the response, if present.
-     *
-     * @return The response data
-     * @since 2.0.0
-     */
-    public Optional<D> getData() {
-        return Optional.ofNullable(this.data);
+    public String getPath() {
+        return this.path;
+    }
+
+    public boolean isFile() {
+        return this.file;
+    }
+
+    public String getLink() {
+        return this.link;
     }
 
 }

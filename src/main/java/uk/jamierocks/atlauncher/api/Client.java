@@ -37,9 +37,11 @@ import java.util.Optional;
 public final class Client {
 
     private final String apiBaseUrl;
+    private final String apiKey;
 
     private Client(final Builder builder) {
         this.apiBaseUrl = builder.apiBaseUrl;
+        this.apiKey = builder.apiKey;
     }
 
     /**
@@ -64,6 +66,7 @@ public final class Client {
     public static class Builder {
 
         private String apiBaseUrl = "https://api.atlauncher.com";
+        private String apiKey = null;
 
         private Builder() {
         }
@@ -77,6 +80,18 @@ public final class Client {
          */
         public Builder apiBaseUrl(final String apiBaseUrl) {
             this.apiBaseUrl = apiBaseUrl;
+            return this;
+        }
+
+        /**
+         * Sets the API key, used to authenticate with the ATLauncher API.
+         *
+         * @param apiKey The authentication key of the API
+         * @return The builder
+         * @since 2.0.0
+         */
+        public Builder apiKey(final String apiKey) {
+            this.apiKey = apiKey;
             return this;
         }
 

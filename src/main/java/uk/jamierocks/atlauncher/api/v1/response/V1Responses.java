@@ -29,11 +29,13 @@ import uk.jamierocks.atlauncher.api.response.Response;
 import uk.jamierocks.atlauncher.api.v1.model.DownloadStatistics;
 import uk.jamierocks.atlauncher.api.v1.model.LeaderboardUser;
 import uk.jamierocks.atlauncher.api.v1.model.SimplePack;
+import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPack;
+import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackFile;
 
 import java.util.List;
 
 /**
- * A list of all the available responses.
+ * A list of all the available responses, as part of the v1 API.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
@@ -43,68 +45,135 @@ public final class V1Responses {
     private V1Responses() {
     }
 
-    @Route("/v1/leaderboards/global/%d/")
-    public static final class GlobalLeaderboard extends Response<List<LeaderboardUser>> {
+    /**
+     * A list of all the GET responses, as part of the public v1 API.
+     *
+     * @author Jamie Mansfield
+     * @since 2.0.0
+     */
+    public static class Get {
+
+        private Get() {
+        }
+
+        @Route("/v1/leaderboards/global/%d/")
+        public static final class GlobalLeaderboard extends Response<List<LeaderboardUser>> {
+        }
+
+        @Route("/v1/leaderboards/pack/%s/%d/")
+        public static final class PackLeaderboard extends Response<List<LeaderboardUser>> {
+        }
+
+        @Route("/v1/leaderboards/country/%s/%d/")
+        public static final class CountryLeaderboard extends Response<List<LeaderboardUser>> {
+        }
+
+        @Route("/v1/news/")
+        public static final class News extends Response<List<uk.jamierocks.atlauncher.api.v1.model.News>> {
+        }
+
+        @Route("/v1/pack/%s/")
+        public static final class Pack extends Response<uk.jamierocks.atlauncher.api.v1.model.Pack> {
+        }
+
+        @Route("/v1/pack/%s/%s/")
+        public static final class PackVersion extends Response<uk.jamierocks.atlauncher.api.v1.model.PackVersion> {
+        }
+
+        @Route("/v1/packs/simple/")
+        public static final class SimplePacks extends Response<List<SimplePack>> {
+        }
+
+        @Route("/v1/packs/all/")
+        public static final class AllPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+        }
+
+        @Route("/v1/packs/public/")
+        public static final class PublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+        }
+
+        @Route("/v1/packs/semipublic/")
+        public static final class SemiPublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+        }
+
+        @Route("/v1/packs/private/")
+        public static final class PrivatePacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+        }
+
+        @Route("/v1/share-codes/%s/")
+        public static final class ShareCode extends Response<uk.jamierocks.atlauncher.api.v1.model.ShareCode> {
+        }
+
+        @Route("/v1/stats/downloads/")
+        public static final class DownloadStats extends Response<DownloadStatistics> {
+        }
+
+        @Route("/v1/stats/downloads/all/")
+        public static final class AllDownloadStats extends Response<Integer> {
+        }
+
+        @Route("/v1/stats/downloads/exe/")
+        public static final class ExeDownloadStats extends Response<Integer> {
+        }
+
+        @Route("/v1/stats/downloads/zip/")
+        public static final class ZipDownloadStats extends Response<Integer> {
+        }
+
+        @Route("/v1/stats/downloads/jar/")
+        public static final class JarDownloadStats extends Response<Integer> {
+        }
+
     }
 
-    @Route("/v1/leaderboards/pack/%s/%d/")
-    public static final class PackLeaderboard extends Response<List<LeaderboardUser>> {
-    }
+    /**
+     * A list of all the available admin responses, as part of the v1 API.
+     *
+     * @author Jamie Mansfield
+     * @since 2.0.0
+     */
+    public static class Admin {
 
-    @Route("/v1/leaderboards/country/%s/%d/")
-    public static final class CountryLeaderboard extends Response<List<LeaderboardUser>> {
-    }
+        private Admin() {
+        }
 
-    @Route("/v1/news/")
-    public static final class News extends Response<List<uk.jamierocks.atlauncher.api.v1.model.News>> {
-    }
+        /**
+         * A list of all the GET responses, as part of the admin v1 API.
+         *
+         * @author Jamie Mansfield
+         * @since 2.0.0
+         */
+        public static class Get {
 
-    @Route("/v1/pack/%s/")
-    public static final class Pack extends Response<uk.jamierocks.atlauncher.api.v1.model.Pack> {
-    }
+            private Get() {
+            }
 
-    @Route("/v1/packs/simple/")
-    public static final class SimplePacks extends Response<List<SimplePack>> {
-    }
+            @Route("/v1/admin/pack/%s/")
+            public static final class Pack extends Response<AdminPack> {
+            }
 
-    @Route("/v1/packs/all/")
-    public static final class AllPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-    }
+            @Route("/v1/admin/pack/%s/files/%s/")
+            public static final class PackDirectory extends Response<List<AdminPackFile>> {
+            }
 
-    @Route("/v1/packs/public/")
-    public static final class PublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-    }
+            @Route("/v1/admin/pack/%s/files/%s/%s/")
+            public static final class PackFile extends Response<String> {
+            }
 
-    @Route("/v1/packs/semipublic/")
-    public static final class SemiPublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-    }
+            @Route("/v1/admin/pack/%s/settings/allowedplayers/")
+            public static final class PackAllowedPlayers extends Response<List<String>> {
+            }
 
-    @Route("/v1/packs/private/")
-    public static final class PrivatePacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-    }
+            @Route("/v1/admin/pack/%s/settings/testers/")
+            public static final class PackTesters extends Response<List<String>> {
+            }
 
-    @Route("/v1/share-codes/%s/")
-    public static final class ShareCode extends Response<uk.jamierocks.atlauncher.api.v1.model.ShareCode> {
-    }
+            @Route("/v1/admin/packs/")
+            public static final class Packs extends Response<List<SimplePack>> {
+            }
 
-    @Route("/v1/stats/downloads/")
-    public static final class DownloadStats extends Response<DownloadStatistics> {
-    }
+        }
 
-    @Route("/v1/stats/downloads/all/")
-    public static final class AllDownloadStats extends Response<Integer> {
-    }
-
-    @Route("/v1/stats/downloads/exe/")
-    public static final class ExeDownloadStats extends Response<Integer> {
-    }
-
-    @Route("/v1/stats/downloads/zip/")
-    public static final class ZipDownloadStats extends Response<Integer> {
-    }
-
-    @Route("/v1/stats/downloads/jar/")
-    public static final class JarDownloadStats extends Response<Integer> {
     }
 
 }
