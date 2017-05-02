@@ -42,7 +42,8 @@ public abstract class Response<D> {
     @SerializedName("message") private String message;
     @SerializedName("data") private D data;
 
-    protected Response() {}
+    protected Response() {
+    }
 
     /**
      * Returns weather the API experienced an error.

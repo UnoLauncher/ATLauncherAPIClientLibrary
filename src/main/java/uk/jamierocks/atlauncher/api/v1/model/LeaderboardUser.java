@@ -43,7 +43,8 @@ public class LeaderboardUser {
     @SerializedName("timePlayed") private int timePlayed;
     @SerializedName("lastPlayed") private int lastPlayed;
 
-    protected LeaderboardUser() {}
+    protected LeaderboardUser() {
+    }
 
     /**
      * Returns the position of the player, in said leaderboard.

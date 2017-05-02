@@ -42,7 +42,8 @@ public class News {
     @SerializedName("published_at") private int publishedAt;
     @SerializedName("content") private String content;
 
-    protected News() {}
+    protected News() {
+    }
 
     /**
      * Gets the title of the news article.

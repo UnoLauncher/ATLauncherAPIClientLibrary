@@ -30,7 +30,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Represents a route.
+ * Represents a route, or API path.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
@@ -40,9 +40,11 @@ import java.lang.annotation.Target;
 public @interface Route {
 
     /**
-     * Returns the route.
+     * Gets the API path.
      *
-     * @return The route
+     * @return The API path.
+     * @since 2.0.0
      */
     String value();
+
 }

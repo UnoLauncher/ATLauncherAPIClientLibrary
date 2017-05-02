@@ -24,10 +24,12 @@
 
 package uk.jamierocks.atlauncher.api;
 
+import uk.jamierocks.atlauncher.api.response.Response;
+
 import java.util.Optional;
 
 /**
- * Represents a client that communicates with a ATLauncher-compatible API.
+ * A client that communicates with an ATLauncher-compatible API.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
@@ -36,12 +38,58 @@ public final class Client {
 
     private final String apiBaseUrl;
 
-    private Client(final String apiBaseUrl) {
-        this.apiBaseUrl = apiBaseUrl;
+    private Client(final Builder builder) {
+        this.apiBaseUrl = builder.apiBaseUrl;
     }
 
-    public <T> Optional<T> get(Class<T> responseClass, Object... replacements) {
+    /**
+     * Performs a GET request, to the given class' route, with the given parameters.
+     *
+     * @param responseClass The response class
+     * @param replacements The replacements
+     * @param <T> The response type
+     * @return The response
+     * @since 2.0.0
+     */
+    public <T extends Response> Optional<T> get(final Class<T> responseClass, final Object... replacements) {
         return Optional.empty();
+    }
+
+    /**
+     * A builder for constructing a {@link Client}.
+     *
+     * @author Jamie Mansfield
+     * @since 2.0.0
+     */
+    public static class Builder {
+
+        private String apiBaseUrl = "https://api.atlauncher.com";
+
+        private Builder() {
+        }
+
+        /**
+         * Sets the API base URL of the ATLauncher API.
+         *
+         * @param apiBaseUrl The base URL of the API
+         * @return The builder
+         * @since 2.0.0
+         */
+        public Builder apiBaseUrl(final String apiBaseUrl) {
+            this.apiBaseUrl = apiBaseUrl;
+            return this;
+        }
+
+        /**
+         * Constructs a new {@link Client}.
+         *
+         * @return An ATLauncher client, for the server of the given properties
+         * @since 2.0.0
+         */
+        public Client build() {
+            return new Client(this);
+        }
+
     }
 
 }

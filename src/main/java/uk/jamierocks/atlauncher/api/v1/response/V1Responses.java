@@ -38,25 +38,26 @@ import java.util.List;
  */
 public final class V1Responses {
 
-    private V1Responses() {}
+    private V1Responses() {
+    }
 
     @Route("/v1/leaderboards/global/%d/")
     public static final class GlobalLeaderboards extends Response<List<LeaderboardUser>> {
     }
 
-    @Route("/v1//leaderboards/pack/%s/%d/")
+    @Route("/v1/leaderboards/pack/%s/%d/")
     public static final class PackLeaderboards extends Response<List<LeaderboardUser>> {
     }
 
-    @Route("/v1//leaderboards/country/%s/%d/")
+    @Route("/v1/leaderboards/country/%s/%d/")
     public static final class CountryLeaderboards extends Response<List<LeaderboardUser>> {
     }
 
-    @Route("/v1//news/")
+    @Route("/v1/news/")
     public static final class News extends Response<List<uk.jamierocks.atlauncher.api.v1.model.News>> {
     }
 
-    @Route("/v1//pack/%s/")
+    @Route("/v1/pack/%s/")
     public static final class Pack extends Response<uk.jamierocks.atlauncher.api.v1.model.Pack> {
     }
 

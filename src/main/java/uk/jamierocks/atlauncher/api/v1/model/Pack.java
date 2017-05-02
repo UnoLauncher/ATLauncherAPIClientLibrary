@@ -43,10 +43,11 @@ public class Pack {
     @SerializedName("type") private Type type;
     @SerializedName("versions") private List<Version> versions;
     @SerializedName("description") private String description;
-    @SerializedName("supportURL") private String supportURL;
-    @SerializedName("websiteURL") private String websiteURL;
+    @SerializedName("supportURL") private String supportUrl;
+    @SerializedName("websiteURL") private String websiteUrl;
 
-    protected Pack() {}
+    protected Pack() {
+    }
 
     /**
      * Gets the identifier of the pack.
@@ -78,12 +79,12 @@ public class Pack {
         return this.description;
     }
 
-    public String getSupportURL() {
-        return this.supportURL;
+    public String getSupportUrl() {
+        return this.supportUrl;
     }
 
-    public String getWebsiteURL() {
-        return this.websiteURL;
+    public String getWebsiteUrl() {
+        return this.websiteUrl;
     }
 
     /**
@@ -106,9 +107,9 @@ public class Pack {
      */
     public static class Version {
 
-        private String version;
-        private String minecraft;
-        private int published;
+        @SerializedName("version") private String version;
+        @SerializedName("minecraft") private String minecraft;
+        @SerializedName("published") private int published;
         @SerializedName("__LINK") private String link;
 
         protected Version() {}
