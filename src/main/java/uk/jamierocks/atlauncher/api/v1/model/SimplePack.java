@@ -25,6 +25,7 @@
 package uk.jamierocks.atlauncher.api.v1.model;
 
 import com.google.gson.annotations.SerializedName;
+import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPack;
 
 /**
  * Represents the <a href="https://wiki.atlauncher.com/api:simple_pack_object">simple pack object</a>.

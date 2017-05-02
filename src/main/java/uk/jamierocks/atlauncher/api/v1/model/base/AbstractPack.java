@@ -22,26 +22,60 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.base;
 
 import com.google.gson.annotations.SerializedName;
-import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPackVersion;
 
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_object">pack version object</a>.
+ * The base model for the pack objects.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PackVersion extends AbstractPackVersion {
+public abstract class AbstractPack {
 
-    @SerializedName("serverZipURL") private String serverZipUrl;
+    @SerializedName("id") private int id;
+    @SerializedName("name") private String name;
+    @SerializedName("safeName") private String safeName;
+    @SerializedName("type") private Type type;
 
-    protected PackVersion() {
+    protected AbstractPack() {
     }
 
-    public String getServerZipUrl() {
-        return this.serverZipUrl;
+    /**
+     * Gets the identifier of the pack.
+     *
+     * @return The identifier
+     * @since 2.0.0
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSafeName() {
+        return this.safeName;
+    }
+
+    public Type getType() {
+        return this.type;
+    }
+
+    /**
+     * Represents the type of a pack.
+     *
+     * @author Jamie Mansfield
+     * @since 2.0.0
+     */
+    public enum Type {
+
+        @SerializedName("public") PUBLIC,
+        @SerializedName("semipublic") SEMI_PUBLIC,
+        @SerializedName("private") PRIVATE
+
     }
 
 }

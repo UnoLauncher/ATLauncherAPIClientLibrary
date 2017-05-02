@@ -22,60 +22,36 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.partner;
 
 import com.google.gson.annotations.SerializedName;
+import uk.jamierocks.atlauncher.api.v1.model.Pack;
+import uk.jamierocks.atlauncher.api.v1.model.base.Action;
+
+import java.util.List;
 
 /**
- * The base model for the pack objects.
+ * Represents the <a href="https://wiki.atlauncher.com/api:psp:psp_share_code_object">partner share code object</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public abstract class AbstractPack {
+public class PartnerShareCode {
 
-    @SerializedName("id") private int id;
-    @SerializedName("name") private String name;
-    @SerializedName("safeName") private String safeName;
-    @SerializedName("type") private Type type;
+    @SerializedName("pack") private Pack pack;
+    @SerializedName("version") private PartnerPackVersion version;
+    @SerializedName("actions") private List<Action> actions;
 
-    protected AbstractPack() {
+    public Pack getPack() {
+        return this.pack;
     }
 
-    /**
-     * Gets the identifier of the pack.
-     *
-     * @return The identifier
-     * @since 2.0.0
-     */
-    public int getId() {
-        return this.id;
+    public PartnerPackVersion getVersion() {
+        return this.version;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public String getSafeName() {
-        return this.safeName;
-    }
-
-    public Type getType() {
-        return this.type;
-    }
-
-    /**
-     * Represents the type of a pack.
-     *
-     * @author Jamie Mansfield
-     * @since 2.0.0
-     */
-    public enum Type {
-
-        @SerializedName("public") PUBLIC,
-        @SerializedName("semipublic") SEMI_PUBLIC,
-        @SerializedName("private") PRIVATE
-
+    public List<Action> getActions() {
+        return this.actions;
     }
 
 }

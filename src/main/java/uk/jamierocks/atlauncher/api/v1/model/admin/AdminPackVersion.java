@@ -22,26 +22,31 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.admin;
 
 import com.google.gson.annotations.SerializedName;
 import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPackVersion;
 
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_object">pack version object</a>.
+ * Represents the <a href="https://wiki.atlauncher.com/api:admin_pack_version_object">admin pack version object</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PackVersion extends AbstractPackVersion {
+public class AdminPackVersion extends AbstractPackVersion {
 
-    @SerializedName("serverZipURL") private String serverZipUrl;
+    @SerializedName("name") private String name;
+    @SerializedName("lastEdited") private int lastEdited;
 
-    protected PackVersion() {
+    protected AdminPackVersion() {
     }
 
-    public String getServerZipUrl() {
-        return this.serverZipUrl;
+    public String getName() {
+        return this.name;
+    }
+
+    public int getLastEdited() {
+        return this.lastEdited;
     }
 
 }

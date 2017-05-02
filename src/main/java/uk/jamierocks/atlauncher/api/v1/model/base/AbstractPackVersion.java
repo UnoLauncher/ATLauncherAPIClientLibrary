@@ -22,26 +22,45 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.base;
 
 import com.google.gson.annotations.SerializedName;
-import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPackVersion;
 
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_object">pack version object</a>.
+ * The base model for pack version models.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PackVersion extends AbstractPackVersion {
+public abstract class AbstractPackVersion {
 
-    @SerializedName("serverZipURL") private String serverZipUrl;
+    @SerializedName("version") private String version;
+    @SerializedName("minecraftVersion") private String minecraftVersion;
+    @SerializedName("recommended") private boolean recommended;
+    @SerializedName("published") private int published;
+    @SerializedName("changelog") private String changelog;
 
-    protected PackVersion() {
+    protected AbstractPackVersion() {
     }
 
-    public String getServerZipUrl() {
-        return this.serverZipUrl;
+    public String getVersion() {
+        return this.version;
+    }
+
+    public String getMinecraftVersion() {
+        return this.minecraftVersion;
+    }
+
+    public boolean isRecommended() {
+        return this.recommended;
+    }
+
+    public int getPublished() {
+        return this.published;
+    }
+
+    public String getChangelog() {
+        return this.changelog;
     }
 
 }

@@ -22,26 +22,63 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.base;
 
 import com.google.gson.annotations.SerializedName;
-import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPackVersion;
 
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_object">pack version object</a>.
+ * Represents the <a href="https://wiki.atlauncher.com/api:action">action object</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PackVersion extends AbstractPackVersion {
+public class Action {
 
-    @SerializedName("serverZipURL") private String serverZipUrl;
+    @SerializedName("stage") private int stage;
+    @SerializedName("url") private String url;
+    @SerializedName("md5") private String md5;
+    @SerializedName("directory") private String directory;
+    @SerializedName("extract") private boolean extract;
 
-    protected PackVersion() {
+    public Stage getStage() {
+        switch (this.stage) {
+            case 1:
+                return Stage.LIBRARIES;
+            case 2:
+                return Stage.MODS;
+            case 3:
+                return Stage.XML_ACTIONS;
+            case 4:
+                return Stage.CONFIGS;
+            default:
+                return Stage.UNKNOWN;
+        }
     }
 
-    public String getServerZipUrl() {
-        return this.serverZipUrl;
+    public String getUrl() {
+        return this.url;
+    }
+
+    public String getMd5() {
+        return this.md5;
+    }
+
+    public String getDirectory() {
+        return this.directory;
+    }
+
+    public boolean isExtract() {
+        return this.extract;
+    }
+
+    public enum Stage {
+
+        LIBRARIES,
+        MODS,
+        XML_ACTIONS,
+        CONFIGS,
+        UNKNOWN
+
     }
 
 }

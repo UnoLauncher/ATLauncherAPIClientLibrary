@@ -31,6 +31,9 @@ import uk.jamierocks.atlauncher.api.v1.model.LeaderboardUser;
 import uk.jamierocks.atlauncher.api.v1.model.SimplePack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackFile;
+import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackVersion;
+import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerPackVersion;
+import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerShareCode;
 
 import java.util.List;
 
@@ -168,8 +171,70 @@ public final class V1Responses {
             public static final class PackTesters extends Response<List<String>> {
             }
 
+            @Route("/admin/pack/%s/versions/%s/")
+            public static final class PackVersion extends Response<AdminPackVersion> {
+            }
+
+            @Route("/admin/pack/%s/versions/%s/xml/")
+            public static final class PackVersionXml extends Response<String> {
+            }
+
+            @Route("/admin/pack/%s/versions/%s/json/")
+            public static final class PackVersionJson extends Response<String> {
+            }
+
             @Route("/v1/admin/packs/")
             public static final class Packs extends Response<List<SimplePack>> {
+            }
+
+        }
+
+    }
+
+    /**
+     * A list of all the available partner responses, as part of the v1 API.
+     *
+     * @author Jamie Mansfield
+     * @since 2.0.0
+     */
+    public static class Partner {
+
+        private Partner() {
+        }
+
+        /**
+         * A list of all the GET responses, as part of the partner v1 API.
+         *
+         * @author Jamie Mansfield
+         * @since 2.0.0
+         */
+        public static class Get {
+
+            private Get() {
+            }
+
+            @Route("/v1/psp/pack/%s/")
+            public static final class Pack extends Response<uk.jamierocks.atlauncher.api.v1.model.Pack> {
+            }
+
+            @Route("/v1/psp/pack/%s/%s/")
+            public static final class PackVersion extends Response<PartnerPackVersion> {
+            }
+
+            @Route("/v1/psp/packs/all/")
+            public static final class AllPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+            }
+
+            @Route("/v1/psp/packs/public/")
+            public static final class PublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+            }
+
+            @Route("/v1/psp/packs/semipublic/")
+            public static final class SemiPublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
+            }
+
+            @Route("/v1/psp/share-code/%s/")
+            public static final class ShareCode extends Response<PartnerShareCode> {
             }
 
         }

@@ -22,26 +22,36 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.model;
+package uk.jamierocks.atlauncher.api.v1.model.partner;
 
 import com.google.gson.annotations.SerializedName;
 import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPackVersion;
 
 /**
- * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_object">pack version object</a>.
+ * Represents the <a href="https://wiki.atlauncher.com/api:psp:psp_pack_version_object">partner pack version object</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PackVersion extends AbstractPackVersion {
+public class PartnerPackVersion extends AbstractPackVersion {
 
-    @SerializedName("serverZipURL") private String serverZipUrl;
+    @SerializedName("serverJar") private String serverJar;
+    @SerializedName("serverMD5") private String serverMd5;
+    @SerializedName("serverDownloadLink") private String serverDownloadLink;
 
-    protected PackVersion() {
+    protected PartnerPackVersion() {
     }
 
-    public String getServerZipUrl() {
-        return this.serverZipUrl;
+    public String getServerJar() {
+        return this.serverJar;
+    }
+
+    public String getServerMd5() {
+        return this.serverMd5;
+    }
+
+    public String getServerDownloadLink() {
+        return this.serverDownloadLink;
     }
 
 }

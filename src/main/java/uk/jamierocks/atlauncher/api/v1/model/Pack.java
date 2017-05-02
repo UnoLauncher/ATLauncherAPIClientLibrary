@@ -25,6 +25,7 @@
 package uk.jamierocks.atlauncher.api.v1.model;
 
 import com.google.gson.annotations.SerializedName;
+import uk.jamierocks.atlauncher.api.v1.model.base.AbstractPack;
 
 import java.util.Date;
 import java.util.List;
