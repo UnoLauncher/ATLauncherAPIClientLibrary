@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.v1.response;
+package uk.jamierocks.atlauncher.api.v1.request.response;
 
 import uk.jamierocks.atlauncher.api.Route;
-import uk.jamierocks.atlauncher.api.response.Response;
+import uk.jamierocks.atlauncher.api.request.response.Response;
 import uk.jamierocks.atlauncher.api.v1.model.DownloadStatistics;
 import uk.jamierocks.atlauncher.api.v1.model.LeaderboardUser;
 import uk.jamierocks.atlauncher.api.v1.model.SimplePack;
@@ -185,6 +185,20 @@ public final class V1Responses {
 
             @Route("/v1/admin/packs/")
             public static final class Packs extends Response<List<SimplePack>> {
+            }
+
+        }
+
+        /**
+         * A list of all the PUT responses, as part of the admin v1 API.
+         *
+         * @author Jamie Mansfield
+         * @since 2.0.0
+         */
+        public static class Put {
+
+            @Route("/admin/pack/%s/file/%s/%s/")
+            public static final class File extends Response<AdminPackFile> {
             }
 
         }

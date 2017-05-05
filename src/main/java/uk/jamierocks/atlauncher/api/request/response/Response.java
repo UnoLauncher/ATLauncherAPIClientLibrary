@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.response;
+package uk.jamierocks.atlauncher.api.request.response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -33,7 +33,7 @@ import java.util.Optional;
  *
  * @param <D> The type of the response
  * @author Jamie Mansfield
- * @since 1.0.0
+ * @since 2.0.0
  */
 public abstract class Response<D> {
 
@@ -59,7 +59,7 @@ public abstract class Response<D> {
      * Returns the <a href="https://wiki.atlauncher.com/api:response_code"></a> for this call.
      *
      * @return The API Response Code
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public int getCode() {
         return this.code;
