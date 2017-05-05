@@ -42,10 +42,11 @@ public class PutRequest<D, R> extends Request<D, R> {
      *
      * @param route The API path
      * @param responseClass The class of the response
+     * @param <D> The type of the data given to the API
      * @param <R> The type of the response
      * @return A builder
      */
-    public static <R> Builder<R> builder(final String route, final Class<? extends Response<R>> responseClass) {
+    public static <D, R> Builder<D, R> builder(final String route, final Class<? extends Response<R>> responseClass) {
         return new Builder<>(route, responseClass);
     }
 
@@ -53,7 +54,7 @@ public class PutRequest<D, R> extends Request<D, R> {
         super(route, data, responseClass);
     }
 
-    public static class Builder<R> extends Request.Builder<R> {
+    public static class Builder<D, R> extends Request.Builder<R> {
 
         private Builder(final String route, final Class<? extends Response<R>> responseClass) {
             super(route, responseClass);
@@ -66,7 +67,7 @@ public class PutRequest<D, R> extends Request<D, R> {
          * @param data The data to send to the API
          * @return A request
          */
-        public <D> PutRequest<D, R> build(final Data<D> data) {
+        public PutRequest<D, R> build(final Data<D> data) {
             return new PutRequest<>(this.route, data, this.responseClass);
         }
 
