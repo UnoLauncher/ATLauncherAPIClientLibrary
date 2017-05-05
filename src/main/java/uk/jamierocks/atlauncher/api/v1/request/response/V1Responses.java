@@ -173,6 +173,9 @@ public final class V1Responses {
             public static final class File extends Response<AdminPackFile> {
             }
 
+            public static final class PackAllowedPlayers extends Response<List<String>> {
+            }
+
         }
 
     }

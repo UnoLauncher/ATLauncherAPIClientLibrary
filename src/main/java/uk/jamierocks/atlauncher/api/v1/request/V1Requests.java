@@ -24,6 +24,7 @@
 
 package uk.jamierocks.atlauncher.api.v1.request;
 
+import uk.jamierocks.atlauncher.api.request.DeleteRequest;
 import uk.jamierocks.atlauncher.api.request.GetRequest;
 import uk.jamierocks.atlauncher.api.request.PutRequest;
 import uk.jamierocks.atlauncher.api.request.Request;
@@ -123,10 +124,16 @@ public final class V1Requests {
                 GetRequest.builder("/v1/admin/pack/%s/files/%s/%s/", V1Responses.Admin.Get.PackFile.class);
 
         public static final PutRequest.Builder<String, AdminPackFile> ADD_PACK_FILE =
-                PutRequest.builder("/admin/pack/%s/file/%s/%s/", V1Responses.Admin.Put.File.class);
+                PutRequest.builder("/v1/admin/pack/%s/file/%s/%s/", V1Responses.Admin.Put.File.class);
+
+        public static final DeleteRequest.Builder<Void> DELETE_PACK_FILE =
+                DeleteRequest.builder("/v1/admin/pack/%s/file/%s/%s/");
 
         public static final GetRequest.Builder<List<String>> PACK_ALLOWED_PLAYERS =
                 GetRequest.builder("/v1/admin/pack/%s/settings/allowedplayers/", V1Responses.Admin.Get.PackAllowedPlayers.class);
+
+        public static final PutRequest.Builder<List<String>, List<String>> SET_PACK_ALLOWED_PLAYERS =
+                PutRequest.builder("/v1/admin/pack/%s/settings/allowedplayers/", V1Responses.Admin.Put.PackAllowedPlayers.class);
 
         public static final GetRequest.Builder<List<String>> PACK_TESTERS =
                 GetRequest.builder("/v1/admin/pack/%s/settings/testers/", V1Responses.Admin.Get.PackTesters.class);

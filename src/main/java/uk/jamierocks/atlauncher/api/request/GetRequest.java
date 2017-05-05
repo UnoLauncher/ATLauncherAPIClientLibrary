@@ -33,7 +33,7 @@ import uk.jamierocks.atlauncher.api.request.response.Response;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class GetRequest<R> extends Request<Void, R> {
+public class GetRequest<R> extends ResponseRequest<Void, R> {
 
     /**
      * Creates a new builder, that can go onto construct a {@link GetRequest}.
@@ -50,7 +50,7 @@ public class GetRequest<R> extends Request<Void, R> {
         super(route, null, responseClass);
     }
 
-    public static class Builder<R> extends Request.Builder<R> {
+    public static class Builder<R> extends ResponseRequest.Builder<R> {
 
         private Builder(final String route, final Class<? extends Response<R>> responseClass) {
             super(route, responseClass);

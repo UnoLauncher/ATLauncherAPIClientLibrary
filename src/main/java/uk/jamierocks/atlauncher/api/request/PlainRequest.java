@@ -26,55 +26,25 @@ package uk.jamierocks.atlauncher.api.request;
 
 import uk.jamierocks.atlauncher.api.request.data.Data;
 
-/**
- * Represents a request to an ATLauncher-compatible API.
- *
- * @param <D> The type of the data, that is given to the API
- * @author Jamie Mansfield
- * @since 2.0.0
- */
-public abstract class Request<D> {
+public abstract class PlainRequest<D> extends Request<D> {
 
-    private final String route;
-    private final Data<D> data;
-
-    protected Request(final String route, final Data<D> data) {
-        this.route = route;
-        this.data = data;
+    protected PlainRequest(final String route, final Data<D> data) {
+        super(route, data);
     }
 
     /**
-     * Gets the API path of the request.
-     *
-     * @return The API path
-     */
-    public String getRoute() {
-        return this.route;
-    }
-
-    /**
-     * Gets the data given to the API.
-     *
-     * @return The data
-     * @since 2.0.0
-     */
-    public Data<D> getData() {
-        return this.data;
-    }
-
-    /**
-     * Represents a builder that can be used to construct {@link Request}s.
+     * Represents a builder that can be used to construct {@link PlainRequest}s.
      *
      * @author Jamie Mansfield
      * @since 2.0.0
      */
-    public abstract static class Builder {
-
-        protected final String route;
+    public abstract static class Builder<D> extends Request.Builder {
 
         protected Builder(final String route) {
-            this.route = route;
+            super(route);
         }
+
+        public abstract PlainRequest<D> build(final Data<D> data);
 
     }
 

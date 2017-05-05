@@ -27,53 +27,44 @@ package uk.jamierocks.atlauncher.api.request;
 import uk.jamierocks.atlauncher.api.request.data.Data;
 
 /**
- * Represents a request to an ATLauncher-compatible API.
+ * Represents a <pre>DELETE</pre> request to an ATLauncher-compatible API.
  *
- * @param <D> The type of the data, that is given to the API
+ * @param <D> The data, that is given to the API
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public abstract class Request<D> {
-
-    private final String route;
-    private final Data<D> data;
-
-    protected Request(final String route, final Data<D> data) {
-        this.route = route;
-        this.data = data;
-    }
+public class DeleteRequest<D> extends PlainRequest<D> {
 
     /**
-     * Gets the API path of the request.
+     * Creates a new builder, that can go onto construct a {@link DeleteRequest}.
      *
-     * @return The API path
+     * @param route The API path
+     * @param <D> The type of the data, given to the API
+     * @return A builder
      */
-    public String getRoute() {
-        return this.route;
+    public static <D> Builder<D> builder(final String route) {
+        return new Builder<>(route);
+    }
+
+    protected DeleteRequest(final String route, final Data<D> data) {
+        super(route, data);
     }
 
     /**
-     * Gets the data given to the API.
-     *
-     * @return The data
-     * @since 2.0.0
-     */
-    public Data<D> getData() {
-        return this.data;
-    }
-
-    /**
-     * Represents a builder that can be used to construct {@link Request}s.
+     * Represents a builder that can be used to construct {@link DeleteRequest}s.
      *
      * @author Jamie Mansfield
      * @since 2.0.0
      */
-    public abstract static class Builder {
-
-        protected final String route;
+    public static class Builder<D> extends PlainRequest.Builder<D> {
 
         protected Builder(final String route) {
-            this.route = route;
+            super(route);
+        }
+
+        @Override
+        public DeleteRequest<D> build(Data<D> data) {
+            return new DeleteRequest<>(this.route, data);
         }
 
     }

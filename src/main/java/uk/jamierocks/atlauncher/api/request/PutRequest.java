@@ -28,14 +28,14 @@ import uk.jamierocks.atlauncher.api.request.data.Data;
 import uk.jamierocks.atlauncher.api.request.response.Response;
 
 /**
- * Represents a <pre>PRE</pre> request to an ATLauncher-compatible API.
+ * Represents a <pre>PUT</pre> request to an ATLauncher-compatible API.
  *
  * @param <D> The data, that is given to the API
  * @param <R> The response to be returned by the API
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class PutRequest<D, R> extends Request<D, R> {
+public class PutRequest<D, R> extends ResponseRequest<D, R> {
 
     /**
      * Creates a new builder, that can go onto construct a {@link PutRequest}.
@@ -54,7 +54,7 @@ public class PutRequest<D, R> extends Request<D, R> {
         super(route, data, responseClass);
     }
 
-    public static class Builder<D, R> extends Request.Builder<R> {
+    public static class Builder<D, R> extends ResponseRequest.Builder<R> {
 
         private Builder(final String route, final Class<? extends Response<R>> responseClass) {
             super(route, responseClass);

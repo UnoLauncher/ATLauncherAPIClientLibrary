@@ -25,55 +25,49 @@
 package uk.jamierocks.atlauncher.api.request;
 
 import uk.jamierocks.atlauncher.api.request.data.Data;
+import uk.jamierocks.atlauncher.api.request.response.Response;
 
 /**
  * Represents a request to an ATLauncher-compatible API.
  *
  * @param <D> The type of the data, that is given to the API
+ * @param <R> The type of the response, that the request is after
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public abstract class Request<D> {
+public abstract class ResponseRequest<D, R> extends Request<D> {
 
-    private final String route;
-    private final Data<D> data;
+    private final Class<? extends Response<R>> responseClass;
 
-    protected Request(final String route, final Data<D> data) {
-        this.route = route;
-        this.data = data;
+    protected ResponseRequest(final String route, final Data<D> data, final Class<? extends Response<R>> responseClass) {
+        super(route, data);
+        this.responseClass = responseClass;
     }
 
     /**
-     * Gets the API path of the request.
+     * Gets the class of the response from the ATLauncher API.
      *
-     * @return The API path
-     */
-    public String getRoute() {
-        return this.route;
-    }
-
-    /**
-     * Gets the data given to the API.
-     *
-     * @return The data
+     * @return The response class
      * @since 2.0.0
      */
-    public Data<D> getData() {
-        return this.data;
+    public Class<? extends Response<R>> getResponseClass() {
+        return this.responseClass;
     }
 
     /**
-     * Represents a builder that can be used to construct {@link Request}s.
+     * Represents a builder that can be used to construct {@link ResponseRequest}s.
      *
+     * @param <R> The response type of the request
      * @author Jamie Mansfield
      * @since 2.0.0
      */
-    public abstract static class Builder {
+    public abstract static class Builder<R> extends Request.Builder {
 
-        protected final String route;
+        protected final Class<? extends Response<R>> responseClass;
 
-        protected Builder(final String route) {
-            this.route = route;
+        protected Builder(final String route, final Class<? extends Response<R>> responseClass) {
+            super(route);
+            this.responseClass = responseClass;
         }
 
     }

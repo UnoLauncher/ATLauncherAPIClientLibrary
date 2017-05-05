@@ -24,7 +24,8 @@
 
 package uk.jamierocks.atlauncher.api;
 
-import uk.jamierocks.atlauncher.api.request.data.Data;
+import uk.jamierocks.atlauncher.api.request.PlainRequest;
+import uk.jamierocks.atlauncher.api.request.ResponseRequest;
 import uk.jamierocks.atlauncher.api.request.response.Response;
 
 import java.util.Optional;
@@ -45,31 +46,11 @@ public final class Client {
         this.apiKey = builder.apiKey;
     }
 
-    /**
-     * Performs a GET request, to the given class' route, with the given parameters.
-     *
-     * @param responseClass The response class
-     * @param replacements The replacements
-     * @param <T> The response type
-     * @return The response
-     * @since 2.0.0
-     */
-    public <T extends Response> Optional<T> get(final Class<T> responseClass, final Object... replacements) {
+    public <D, R> Optional<Response<R>> perform(final ResponseRequest<D, R> request) {
         return Optional.empty();
     }
 
-    /**
-     * Performs a PUT request, to the given class' route, with the given data and parameters.
-     *
-     * @param responseClass The response class
-     * @param data The data to send
-     * @param replacements The replacements
-     * @param <T> The response type
-     * @return The response
-     * @since 2.0.0
-     */
-    public <T extends Response> Optional<T> put(final Class<T> responseClass, final Data<?> data, final Object... replacements) {
-        return Optional.empty();
+    public <D> void perform(final PlainRequest<D> request) {
     }
 
     /**
