@@ -25,7 +25,7 @@
 package uk.jamierocks.atlauncher.api.request;
 
 import uk.jamierocks.atlauncher.api.request.data.Data;
-import uk.jamierocks.atlauncher.api.request.response.Response;
+import uk.jamierocks.atlauncher.api.Response;
 
 /**
  * Represents a <pre>PUT</pre> request to an ATLauncher-compatible API.

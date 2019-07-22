@@ -24,7 +24,7 @@
 
 package uk.jamierocks.atlauncher.api.request;
 
-import uk.jamierocks.atlauncher.api.request.response.Response;
+import uk.jamierocks.atlauncher.api.Response;
 
 /**
  * Represents a <pre>GET</pre> request to an ATLauncher-compatible API.

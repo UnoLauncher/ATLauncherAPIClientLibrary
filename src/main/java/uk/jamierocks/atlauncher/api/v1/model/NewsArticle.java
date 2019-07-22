@@ -24,9 +24,7 @@
 
 package uk.jamierocks.atlauncher.api.v1.model;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * Represents the <a href="https://wiki.atlauncher.com/api:news_object">news object</a>.
@@ -34,15 +32,24 @@ import java.util.Date;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public class News {
+public class NewsArticle {
 
-    @SerializedName("title") private String title;
-    @SerializedName("comments") private int comments;
-    @SerializedName("link") private String link;
-    @SerializedName("published_at") private int publishedAt;
-    @SerializedName("content") private String content;
+    private final String title;
+    private final int comments;
+    private final String link;
+    private final Instant publishedAt;
+    private final String content;
 
-    protected News() {
+    public NewsArticle(final String title,
+                       final int comments,
+                       final String link,
+                       final Instant publishedAt,
+                       final String content) {
+        this.title = title;
+        this.comments = comments;
+        this.link = link;
+        this.publishedAt = publishedAt;
+        this.content = content;
     }
 
     /**
@@ -81,8 +88,8 @@ public class News {
      * @return The date published
      * @since 2.0.0
      */
-    public Date getPublishedAt() {
-        return new Date(this.publishedAt);
+    public Instant getPublishedAt() {
+        return this.publishedAt;
     }
 
     /**

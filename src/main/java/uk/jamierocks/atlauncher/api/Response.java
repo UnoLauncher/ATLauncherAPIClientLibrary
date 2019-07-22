@@ -22,9 +22,7 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.request.response;
-
-import com.google.gson.annotations.SerializedName;
+package uk.jamierocks.atlauncher.api;
 
 import java.util.Optional;
 
@@ -35,14 +33,18 @@ import java.util.Optional;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public abstract class Response<D> {
+public class Response<D> {
 
-    @SerializedName("error") private boolean error;
-    @SerializedName("code") private int code;
-    @SerializedName("message") private String message;
-    @SerializedName("data") private D data;
+    private final boolean error;
+    private final int code;
+    private final String message;
+    private final D data;
 
-    protected Response() {
+    public Response(final boolean error, final int code, final String message, final D data) {
+        this.error = error;
+        this.code = code;
+        this.message = message;
+        this.data = data;
     }
 
     /**

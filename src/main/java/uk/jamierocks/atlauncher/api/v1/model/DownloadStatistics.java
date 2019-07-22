@@ -24,8 +24,6 @@
 
 package uk.jamierocks.atlauncher.api.v1.model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Represents a <a href="https://wiki.atlauncher.com/api:download_stats_object">download stat object</a>.
  *
@@ -34,12 +32,14 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DownloadStatistics {
 
-    @SerializedName("all") private int all;
-    @SerializedName("exe") private int exe;
-    @SerializedName("jar") private int jar;
-    @SerializedName("zip") private int zip;
+    private final int exe;
+    private final int jar;
+    private final int zip;
 
-    protected DownloadStatistics() {
+    public DownloadStatistics(final int exe, final int jar, final int zip) {
+        this.exe = exe;
+        this.jar = jar;
+        this.zip = zip;
     }
 
     /**
@@ -49,7 +49,7 @@ public class DownloadStatistics {
      * @since 2.0.0
      */
     public int getAll() {
-        return this.all;
+        return this.exe + this.jar + this.zip;
     }
 
     /**
@@ -75,7 +75,6 @@ public class DownloadStatistics {
 
     /**
      * Gets the number of downloads the launcher has, on MacOS.
-     * This will likely be Linux / others.
      *
      * @return The number of launcher downloads, for MacOS
      * @since 2.0.0

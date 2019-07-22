@@ -24,11 +24,9 @@
 
 package uk.jamierocks.atlauncher.api;
 
-import uk.jamierocks.atlauncher.api.request.PlainRequest;
-import uk.jamierocks.atlauncher.api.request.ResponseRequest;
-import uk.jamierocks.atlauncher.api.request.response.Response;
-
-import java.util.Optional;
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * A client that communicates with an ATLauncher-compatible API.
@@ -36,21 +34,28 @@ import java.util.Optional;
  * @author Jamie Mansfield
  * @since 2.0.0
  */
-public final class Client {
+public class Client {
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     private final String apiBaseUrl;
     private final String apiKey;
+    private final OkHttpClient client = new OkHttpClient();
 
     private Client(final Builder builder) {
         this.apiBaseUrl = builder.apiBaseUrl;
         this.apiKey = builder.apiKey;
     }
 
-    public <D, R> Optional<Response<R>> perform(final ResponseRequest<D, R> request) {
-        return Optional.empty();
-    }
-
-    public <D> void perform(final PlainRequest<D> request) {
+    public Call call(final String route) {
+        final Request.Builder builder = new Request.Builder()
+                .url(this.apiBaseUrl + route);
+        if (this.apiKey != null && !this.apiKey.isEmpty()) {
+            builder.addHeader("API-KEY", this.apiKey);
+        }
+        return this.client.newCall(builder.build());
     }
 
     /**

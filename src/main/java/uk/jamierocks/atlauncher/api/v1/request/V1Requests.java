@@ -30,7 +30,7 @@ import uk.jamierocks.atlauncher.api.request.PutRequest;
 import uk.jamierocks.atlauncher.api.request.Request;
 import uk.jamierocks.atlauncher.api.v1.model.DownloadStatistics;
 import uk.jamierocks.atlauncher.api.v1.model.LeaderboardUser;
-import uk.jamierocks.atlauncher.api.v1.model.News;
+import uk.jamierocks.atlauncher.api.v1.model.NewsArticle;
 import uk.jamierocks.atlauncher.api.v1.model.Pack;
 import uk.jamierocks.atlauncher.api.v1.model.PackVersion;
 import uk.jamierocks.atlauncher.api.v1.model.ShareCode;
@@ -61,7 +61,7 @@ public final class V1Requests {
     public static final GetRequest.Builder<List<LeaderboardUser>> COUNTRY_LEADERBOARD =
             GetRequest.builder("/v1/leaderboards/country/%s/%d/", V1Responses.Get.CountryLeaderboard.class);
 
-    public static final GetRequest.Builder<List<News>> NEWS =
+    public static final GetRequest.Builder<List<NewsArticle>> NEWS =
             GetRequest.builder("/v1/news/", V1Responses.Get.News.class);
 
     public static final GetRequest.Builder<Pack> PACK =
