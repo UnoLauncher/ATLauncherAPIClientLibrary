@@ -24,6 +24,7 @@
 
 package uk.jamierocks.atlauncher.api.v1.request.response;
 
+import uk.jamierocks.atlauncher.api.ListResponse;
 import uk.jamierocks.atlauncher.api.Response;
 import uk.jamierocks.atlauncher.api.v1.model.DownloadStatistics;
 import uk.jamierocks.atlauncher.api.v1.model.LeaderboardUser;
@@ -83,7 +84,7 @@ public final class V1Responses {
 
         }
 
-        public static final class News extends Response<List<NewsArticle>> {
+        public static final class News extends ListResponse<NewsArticle> {
 
             public News(final boolean error, final int code, final String message, final List<NewsArticle> data) {
                 super(error, code, message, data);

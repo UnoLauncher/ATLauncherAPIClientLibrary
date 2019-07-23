@@ -22,17 +22,14 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.adapter;
+package uk.jamierocks.atlauncher.api;
 
-public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
+import java.util.List;
 
-    public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
-        super(
-                type,
-                constructor,
-                TypeAdapter::getObject,
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
-        );
+public class ListResponse<D> extends Response<List<D>> {
+
+    public ListResponse(final boolean error, final int code, final String message, final List<D> data) {
+        super(error, code, message, data);
     }
 
 }

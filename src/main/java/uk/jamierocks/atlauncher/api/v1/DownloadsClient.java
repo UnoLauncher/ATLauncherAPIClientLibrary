@@ -27,7 +27,9 @@ package uk.jamierocks.atlauncher.api.v1;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import uk.jamierocks.atlauncher.api.Client;
+import uk.jamierocks.atlauncher.api.IntegerResponse;
 import uk.jamierocks.atlauncher.api.Response;
+import uk.jamierocks.atlauncher.api.adapter.IntegerResponseTypeAdapter;
 import uk.jamierocks.atlauncher.api.adapter.ResponseTypeAdapter;
 import uk.jamierocks.atlauncher.api.v1.adapter.DownloadStatisticsTypeAdapter;
 import uk.jamierocks.atlauncher.api.v1.model.DownloadStatistics;
@@ -38,6 +40,7 @@ import java.io.IOException;
 public final class DownloadsClient {
 
     public static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(IntegerResponse.class, new IntegerResponseTypeAdapter())
             .registerTypeAdapter(
                     V1Responses.Get.DownloadStats.class,
                     new ResponseTypeAdapter<>(DownloadStatistics.class, V1Responses.Get.DownloadStats::new)
@@ -48,6 +51,30 @@ public final class DownloadsClient {
     public static Response<DownloadStatistics> get(final Client client) throws IOException {
         try (final okhttp3.Response response = client.call("/v1/stats/downloads/").execute()) {
             return GSON.fromJson(response.body().string(), V1Responses.Get.DownloadStats.class);
+        }
+    }
+
+    public static IntegerResponse getAll(final Client client) throws IOException {
+        try (final okhttp3.Response response = client.call("/v1/stats/downloads/all/").execute()) {
+            return GSON.fromJson(response.body().string(), IntegerResponse.class);
+        }
+    }
+
+    public static IntegerResponse getExe(final Client client) throws IOException {
+        try (final okhttp3.Response response = client.call("/v1/stats/downloads/exe/").execute()) {
+            return GSON.fromJson(response.body().string(), IntegerResponse.class);
+        }
+    }
+
+    public static IntegerResponse getJar(final Client client) throws IOException {
+        try (final okhttp3.Response response = client.call("/v1/stats/downloads/jar/").execute()) {
+            return GSON.fromJson(response.body().string(), IntegerResponse.class);
+        }
+    }
+
+    public static IntegerResponse getZip(final Client client) throws IOException {
+        try (final okhttp3.Response response = client.call("/v1/stats/downloads/zip/").execute()) {
+            return GSON.fromJson(response.body().string(), IntegerResponse.class);
         }
     }
 

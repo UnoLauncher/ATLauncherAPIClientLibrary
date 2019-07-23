@@ -22,17 +22,36 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.adapter;
+package uk.jamierocks.atlauncher.api.v1;
 
-public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import uk.jamierocks.atlauncher.api.Client;
+import uk.jamierocks.atlauncher.api.ListResponse;
+import uk.jamierocks.atlauncher.api.adapter.ListResponseTypeAdapter;
+import uk.jamierocks.atlauncher.api.v1.adapter.NewsArticleTypeAdapter;
+import uk.jamierocks.atlauncher.api.v1.model.NewsArticle;
+import uk.jamierocks.atlauncher.api.v1.request.response.V1Responses;
 
-    public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
-        super(
-                type,
-                constructor,
-                TypeAdapter::getObject,
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
-        );
+import java.io.IOException;
+
+public final class NewsArticleClient {
+
+    public static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(
+                    V1Responses.Get.News.class,
+                    new ListResponseTypeAdapter<>(NewsArticle.class, V1Responses.Get.News::new)
+            )
+            .registerTypeAdapter(NewsArticle.class, new NewsArticleTypeAdapter())
+            .create();
+
+    public static ListResponse<NewsArticle> get(final Client client) throws IOException {
+        try (final okhttp3.Response response = client.call("/v1/news/").execute()) {
+            return GSON.fromJson(response.body().string(), V1Responses.Get.News.class);
+        }
+    }
+
+    private NewsArticleClient() {
     }
 
 }

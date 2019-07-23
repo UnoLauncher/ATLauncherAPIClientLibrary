@@ -22,17 +22,12 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.atlauncher.api.adapter;
+package uk.jamierocks.atlauncher.api;
 
-public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
+public class IntegerResponse extends Response<Integer> {
 
-    public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
-        super(
-                type,
-                constructor,
-                TypeAdapter::getObject,
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
-        );
+    public IntegerResponse(final boolean error, final int code, final String message, final Integer data) {
+        super(error, code, message, data);
     }
 
 }

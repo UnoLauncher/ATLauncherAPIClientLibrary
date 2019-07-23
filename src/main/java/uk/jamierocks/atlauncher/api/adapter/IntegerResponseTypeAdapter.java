@@ -24,14 +24,20 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
-public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
+import com.google.gson.JsonNull;
+import com.google.gson.JsonPrimitive;
+import uk.jamierocks.atlauncher.api.IntegerResponse;
 
-    public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
+public class IntegerResponseTypeAdapter extends AbstractResponseTypeAdapter<Integer> {
+
+    public IntegerResponseTypeAdapter() {
         super(
-                type,
-                constructor,
-                TypeAdapter::getObject,
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
+                Integer.class,
+                IntegerResponse::new,
+                ((response, ctx, type1, key) -> TypeAdapter.getInt(response, key)),
+                (response, ctx, type1) -> response.getData().isPresent() ?
+                        new JsonPrimitive(response.getData().get()) :
+                        JsonNull.INSTANCE
         );
     }
 

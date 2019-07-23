@@ -24,14 +24,23 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
-public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 
-    public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
+import java.util.List;
+
+public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List<D>> {
+
+    public ListResponseTypeAdapter(final Class<D> type, final ResponseSupplier<List<D>> constructor) {
         super(
-                type,
+                (Class<List<D>>) new TypeToken<List<D>>() {}.getRawType(),
                 constructor,
-                TypeAdapter::getObject,
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
+                (json, ctx, type1, key) -> TypeAdapter.getList(json, ctx, type, key),
+                (src, ctx, type1) -> {
+                    final JsonArray json = new JsonArray();
+                    src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, type))));
+                    return json;
+                }
         );
     }
 
