@@ -27,6 +27,7 @@ package uk.jamierocks.atlauncher.api;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import uk.jamierocks.atlauncher.api.v1.V1Client;
 
 /**
  * A client that communicates with an ATLauncher-compatible API.
@@ -44,9 +45,13 @@ public class Client {
     private final String apiKey;
     private final OkHttpClient client = new OkHttpClient();
 
+    private final V1Client v1;
+
     private Client(final Builder builder) {
         this.apiBaseUrl = builder.apiBaseUrl;
         this.apiKey = builder.apiKey;
+
+        this.v1 = new V1Client(this);
     }
 
     public Call call(final String route) {
@@ -56,6 +61,10 @@ public class Client {
             builder.addHeader("API-KEY", this.apiKey);
         }
         return this.client.newCall(builder.build());
+    }
+
+    public V1Client v1() {
+        return this.v1;
     }
 
     /**

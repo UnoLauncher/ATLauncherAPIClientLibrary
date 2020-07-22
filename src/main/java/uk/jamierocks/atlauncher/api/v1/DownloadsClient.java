@@ -1,5 +1,5 @@
 /*
- * This file is part of ATLauncherAPIClientLibrary, licensed under the MIT License (MIT).
+ * This file is part of ATLauncherAPIthis.serviceLibrary, licensed under the MIT License (MIT).
  *
  * Copyright (c) 2015-2020, Jamie Mansfield <https://www.jamierocks.uk/>
  *
@@ -26,7 +26,6 @@ package uk.jamierocks.atlauncher.api.v1;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import uk.jamierocks.atlauncher.api.Client;
 import uk.jamierocks.atlauncher.api.IntegerResponse;
 import uk.jamierocks.atlauncher.api.Response;
 import uk.jamierocks.atlauncher.api.adapter.IntegerResponseTypeAdapter;
@@ -37,7 +36,7 @@ import uk.jamierocks.atlauncher.api.v1.request.response.V1Responses;
 
 import java.io.IOException;
 
-public final class DownloadsClient {
+public class DownloadsClient {
 
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(IntegerResponse.class, new IntegerResponseTypeAdapter())
@@ -48,37 +47,40 @@ public final class DownloadsClient {
             .registerTypeAdapter(DownloadStatistics.class, new DownloadStatisticsTypeAdapter())
             .create();
 
-    public static Response<DownloadStatistics> get(final Client client) throws IOException {
-        try (final okhttp3.Response response = client.call("/v1/stats/downloads/").execute()) {
+    private final V1Client service;
+
+    DownloadsClient(final V1Client service) {
+        this.service = service;
+    }
+
+    public Response<DownloadStatistics> get() throws IOException {
+        try (final okhttp3.Response response = this.service.call("/stats/downloads/").execute()) {
             return GSON.fromJson(response.body().string(), V1Responses.Get.DownloadStats.class);
         }
     }
 
-    public static IntegerResponse getAll(final Client client) throws IOException {
-        try (final okhttp3.Response response = client.call("/v1/stats/downloads/all/").execute()) {
+    public IntegerResponse getAll() throws IOException {
+        try (final okhttp3.Response response = this.service.call("/stats/downloads/all/").execute()) {
             return GSON.fromJson(response.body().string(), IntegerResponse.class);
         }
     }
 
-    public static IntegerResponse getExe(final Client client) throws IOException {
-        try (final okhttp3.Response response = client.call("/v1/stats/downloads/exe/").execute()) {
+    public IntegerResponse getExe() throws IOException {
+        try (final okhttp3.Response response = this.service.call("/stats/downloads/exe/").execute()) {
             return GSON.fromJson(response.body().string(), IntegerResponse.class);
         }
     }
 
-    public static IntegerResponse getJar(final Client client) throws IOException {
-        try (final okhttp3.Response response = client.call("/v1/stats/downloads/jar/").execute()) {
+    public IntegerResponse getJar() throws IOException {
+        try (final okhttp3.Response response = this.service.call("/stats/downloads/jar/").execute()) {
             return GSON.fromJson(response.body().string(), IntegerResponse.class);
         }
     }
 
-    public static IntegerResponse getZip(final Client client) throws IOException {
-        try (final okhttp3.Response response = client.call("/v1/stats/downloads/zip/").execute()) {
+    public IntegerResponse getZip() throws IOException {
+        try (final okhttp3.Response response = this.service.call("/stats/downloads/zip/").execute()) {
             return GSON.fromJson(response.body().string(), IntegerResponse.class);
         }
-    }
-
-    private DownloadsClient() {
     }
 
 }

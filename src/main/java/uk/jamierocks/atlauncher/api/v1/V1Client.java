@@ -24,36 +24,39 @@
 
 package uk.jamierocks.atlauncher.api.v1;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import uk.jamierocks.atlauncher.api.ListResponse;
-import uk.jamierocks.atlauncher.api.adapter.ListResponseTypeAdapter;
-import uk.jamierocks.atlauncher.api.v1.adapter.NewsArticleTypeAdapter;
-import uk.jamierocks.atlauncher.api.v1.model.NewsArticle;
-import uk.jamierocks.atlauncher.api.v1.request.response.V1Responses;
+import okhttp3.Call;
+import uk.jamierocks.atlauncher.api.Client;
 
-import java.io.IOException;
+/**
+ * The ATLauncher API v1 client.
+ *
+ * @author Jamie Mansfield
+ * @since 2.0.0
+ */
+public class V1Client {
 
-public class NewsArticleClient {
+    private final Client client;
 
-    public static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(
-                    V1Responses.Get.News.class,
-                    new ListResponseTypeAdapter<>(NewsArticle.class, V1Responses.Get.News::new)
-            )
-            .registerTypeAdapter(NewsArticle.class, new NewsArticleTypeAdapter())
-            .create();
+    private final NewsArticleClient news;
+    private final DownloadsClient downloads;
 
-    private final V1Client service;
+    public V1Client(final Client client) {
+        this.client = client;
 
-    NewsArticleClient(final V1Client service) {
-        this.service = service;
+        this.news = new NewsArticleClient(this);
+        this.downloads = new DownloadsClient(this);
     }
 
-    public ListResponse<NewsArticle> get() throws IOException {
-        try (final okhttp3.Response response = this.service.call("/news/").execute()) {
-            return GSON.fromJson(response.body().string(), V1Responses.Get.News.class);
-        }
+    public Call call(final String route) {
+        return this.client.call("/v1" + route);
+    }
+
+    public NewsArticleClient news() {
+        return this.news;
+    }
+
+    public DownloadsClient downloads() {
+        return this.downloads;
     }
 
 }
