@@ -1,7 +1,7 @@
 /*
  * This file is part of ATLauncherAPIClientLibrary, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2015-2017, Jamie Mansfield <https://www.jamierocks.uk/>
+ * Copyright (c) 2015-2020, Jamie Mansfield <https://www.jamierocks.uk/>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
