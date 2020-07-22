@@ -46,7 +46,6 @@ public class DownloadStatistics {
      * Gets the total number of downloads the launcher has has, for all platforms.
      *
      * @return The number of launcher downloads, for all platforms
-     * @since 2.0.0
      */
     public int getAll() {
         return this.exe + this.jar + this.zip;
@@ -56,7 +55,6 @@ public class DownloadStatistics {
      * Gets the number of downloads the launcher has, on Windows.
      *
      * @return The number of launcher downloads, for Windows
-     * @since 2.0.0
      */
     public int getExe() {
         return this.exe;
@@ -67,17 +65,15 @@ public class DownloadStatistics {
      * This will likely be Linux / others.
      *
      * @return The number of launcher downloads, for the jar distribution
-     * @since 2.0.0
      */
     public int getJar() {
         return this.jar;
     }
 
     /**
-     * Gets the number of downloads the launcher has, on MacOS.
+     * Gets the number of downloads the launcher has, on macOS.
      *
-     * @return The number of launcher downloads, for MacOS
-     * @since 2.0.0
+     * @return The number of launcher downloads, for macOS
      */
     public int getZip() {
         return this.zip;

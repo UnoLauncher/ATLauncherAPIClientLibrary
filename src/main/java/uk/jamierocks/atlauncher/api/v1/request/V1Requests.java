@@ -110,7 +110,6 @@ public final class V1Requests {
      * A psuedo-enum of admin {@link Request}s.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Admin {
 
@@ -159,7 +158,6 @@ public final class V1Requests {
      * A psuedo-enum of partner {@link Request}s.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Partner {
 

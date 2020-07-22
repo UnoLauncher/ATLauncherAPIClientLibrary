@@ -50,7 +50,6 @@ public class AdminPack extends Pack {
      * Represents the <a href="https://wiki.atlauncher.com/api:development_pack_version_array">development pack version object</a>.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class DevelopmentVersion {
 

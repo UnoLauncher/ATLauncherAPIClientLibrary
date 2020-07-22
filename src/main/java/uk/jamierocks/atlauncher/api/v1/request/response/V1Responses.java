@@ -53,7 +53,6 @@ public final class V1Responses {
      * A list of all the GET responses, as part of the public v1 API.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Get {
 
@@ -202,7 +201,6 @@ public final class V1Responses {
      * A list of all the available admin responses, as part of the v1 API.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Admin {
 
@@ -213,7 +211,6 @@ public final class V1Responses {
          * A list of all the GET responses, as part of the admin v1 API.
          *
          * @author Jamie Mansfield
-         * @since 2.0.0
          */
         public static class Get {
 
@@ -298,7 +295,6 @@ public final class V1Responses {
          * A list of all the PUT responses, as part of the admin v1 API.
          *
          * @author Jamie Mansfield
-         * @since 2.0.0
          */
         public static class Put {
 
@@ -326,7 +322,6 @@ public final class V1Responses {
      * A list of all the available partner responses, as part of the v1 API.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Partner {
 
@@ -337,7 +332,6 @@ public final class V1Responses {
          * A list of all the GET responses, as part of the partner v1 API.
          *
          * @author Jamie Mansfield
-         * @since 2.0.0
          */
         public static class Get {
 

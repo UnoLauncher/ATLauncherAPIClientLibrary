@@ -56,7 +56,6 @@ public class NewsArticle {
      * Gets the title of the news article.
      *
      * @return The title
-     * @since 2.0.0
      */
     public String getTitle() {
         return this.title;
@@ -66,7 +65,6 @@ public class NewsArticle {
      * Gets the amount of comments for the article.
      *
      * @return The amount of comments
-     * @since 2.0.0
      */
     public int getComments() {
         return this.comments;
@@ -76,7 +74,6 @@ public class NewsArticle {
      * Gets the link of the news article.
      *
      * @return The link
-     * @since 2.0.0
      */
     public String getLink() {
         return this.link;
@@ -86,7 +83,6 @@ public class NewsArticle {
      * Gets the date the article was published
      *
      * @return The date published
-     * @since 2.0.0
      */
     public Instant getPublishedAt() {
         return this.publishedAt;
@@ -96,7 +92,6 @@ public class NewsArticle {
      * Gets the content of the news article.
      *
      * @return The content
-     * @since 2.0.0
      */
     public String getContent() {
         return this.content;

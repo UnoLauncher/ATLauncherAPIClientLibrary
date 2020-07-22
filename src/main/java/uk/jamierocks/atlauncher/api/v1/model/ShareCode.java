@@ -49,7 +49,6 @@ public class ShareCode {
      * Gets the 8-character share code.
      *
      * @return The share code
-     * @since 2.0.0
      */
     public String getCode() {
         return this.code;
@@ -59,7 +58,6 @@ public class ShareCode {
      * Gets the name of the pack, of the share code.
      *
      * @return The pack name
-     * @since 2.0.0
      */
     public String getPack() {
         return this.pack;
@@ -69,7 +67,6 @@ public class ShareCode {
      * Gets the version of the pack, of the share code.
      *
      * @return The pack version
-     * @since 2.0.0
      */
     public String getVersion() {
         return this.version;
@@ -79,7 +76,6 @@ public class ShareCode {
      * Gets the count of how many times the share code has been used.
      *
      * @return The use count
-     * @since 2.0.0
      */
     public int getUsed() {
         return this.used;
@@ -89,7 +85,6 @@ public class ShareCode {
      * Gets the mods involved with the share code.
      *
      * @return The mods
-     * @since 2.0.0
      */
     public Mods getMods() {
         return this.mods;
@@ -99,7 +94,6 @@ public class ShareCode {
      * Represents the mods object, of the share code object.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Mods {
 
@@ -112,7 +106,6 @@ public class ShareCode {
          * Gets a list of optional {@link Mod}s.
          *
          * @return The optional mods
-         * @since 2.0.0
          */
         public List<Mod> getOptional() {
             return this.optional;
@@ -124,7 +117,6 @@ public class ShareCode {
      * Represents the <a href="https://wiki.atlauncher.com/api:share_code_mod_object">mod object</a>, of the share code object.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Mod {
 
@@ -138,7 +130,6 @@ public class ShareCode {
          * Gets the name of a mod.
          *
          * @return The mod name
-         * @since 2.0.0
          */
         public String getName() {
             return this.name;
@@ -149,7 +140,6 @@ public class ShareCode {
          *
          * @return {@code True} if the mod is selected,
          *         {@code false} otherwise
-         * @since 2.0.0
          */
         public boolean isSelected() {
             return this.selected;

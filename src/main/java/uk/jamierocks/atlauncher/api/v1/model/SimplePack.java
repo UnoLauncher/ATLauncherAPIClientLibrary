@@ -44,7 +44,6 @@ public class SimplePack extends AbstractPack {
      * Gets the URL to the full pack object.
      *
      * @return The URL to the full pack object
-     * @since 2.0.0
      */
     public String getLink() {
         return this.link;

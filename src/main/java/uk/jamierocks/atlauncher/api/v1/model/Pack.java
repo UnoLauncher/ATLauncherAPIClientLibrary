@@ -66,7 +66,6 @@ public class Pack extends AbstractPack {
      * Represents the <a href="https://wiki.atlauncher.com/api:pack_version_array">pack version array</a>.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Version {
 

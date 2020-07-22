@@ -46,7 +46,6 @@ public abstract class AbstractPack {
      * Gets the identifier of the pack.
      *
      * @return The identifier
-     * @since 2.0.0
      */
     public int getId() {
         return this.id;
@@ -68,7 +67,6 @@ public abstract class AbstractPack {
      * Represents the type of a pack.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public enum Type {
 

@@ -62,7 +62,6 @@ public class Client {
      * A builder for constructing a {@link Client}.
      *
      * @author Jamie Mansfield
-     * @since 2.0.0
      */
     public static class Builder {
 
@@ -77,7 +76,6 @@ public class Client {
          *
          * @param apiBaseUrl The base URL of the API
          * @return The builder
-         * @since 2.0.0
          */
         public Builder apiBaseUrl(final String apiBaseUrl) {
             this.apiBaseUrl = apiBaseUrl;
@@ -89,7 +87,6 @@ public class Client {
          *
          * @param apiKey The authentication key of the API
          * @return The builder
-         * @since 2.0.0
          */
         public Builder apiKey(final String apiKey) {
             this.apiKey = apiKey;
@@ -100,7 +97,6 @@ public class Client {
          * Constructs a new {@link Client}.
          *
          * @return An ATLauncher client, for the server of the given properties
-         * @since 2.0.0
          */
         public Client build() {
             return new Client(this);

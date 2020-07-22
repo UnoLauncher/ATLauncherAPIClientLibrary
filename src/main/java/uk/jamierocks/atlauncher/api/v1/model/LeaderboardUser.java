@@ -50,7 +50,6 @@ public class LeaderboardUser {
      * Returns the position of the player, in said leaderboard.
      *
      * @return The position of the player in the leaderboard
-     * @since 2.0.0
      */
     public int getPosition() {
         return this.position;
@@ -60,7 +59,6 @@ public class LeaderboardUser {
      * Returns the username of the player.
      *
      * @return The username
-     * @since 2.0.0
      */
     public String getUsername() {
         return this.username;
@@ -70,7 +68,6 @@ public class LeaderboardUser {
      * Returns the 2-letter country code the player comes from.
      *
      * @return The 2-letter country code
-     * @since 2.0.0
      */
     public Optional<String> getCountry() {
         if (this.country != null && !this.country.isEmpty() && !this.country.equalsIgnoreCase("XX")) {
@@ -83,7 +80,6 @@ public class LeaderboardUser {
      * Returns the amount of time the player has played for (in seconds).
      *
      * @return The play time of the player
-     * @since 2.0.0
      */
     public int getTimePlayed() {
         return this.timePlayed;
@@ -93,7 +89,6 @@ public class LeaderboardUser {
      * Returns the date the player last played at.
      *
      * @return The last time the player played
-     * @since 2.0.0
      */
     public Date getLastPlayed() {
         return new Date(this.lastPlayed);

@@ -51,7 +51,6 @@ public class Response<D> {
      * Returns weather the API experienced an error.
      *
      * @return {@code True} if an error occurred, {@code false} otherwise
-     * @since 2.0.0
      */
     public boolean isError() {
         return this.error;
@@ -61,7 +60,6 @@ public class Response<D> {
      * Returns the <a href="https://wiki.atlauncher.com/api:response_code"></a> for this call.
      *
      * @return The API Response Code
-     * @since 2.0.0
      */
     public int getCode() {
         return this.code;
@@ -71,7 +69,6 @@ public class Response<D> {
      * Returns the message of the response, if present.
      *
      * @return The response message
-     * @since 2.0.0
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(this.message);
@@ -81,7 +78,6 @@ public class Response<D> {
      * Returns the data of the response, if present.
      *
      * @return The response data
-     * @since 2.0.0
      */
     public Optional<D> getData() {
         return Optional.ofNullable(this.data);
