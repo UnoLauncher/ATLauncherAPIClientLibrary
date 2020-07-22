@@ -46,18 +46,9 @@ public abstract class AbstractResponseTypeAdapter<D> implements TypeAdapter<Resp
     private static final String DATA = "data";
 
     private final Class<D> type;
-    private final ResponseSupplier<D> constructor;
-    private final DataDeserialiser<D> deserialiser;
-    private final DataSerialiser<D> serialiser;
 
-    protected AbstractResponseTypeAdapter(final Class<D> type,
-                                          final ResponseSupplier<D> constructor,
-                                          final DataDeserialiser<D> deserialiser,
-                                          final DataSerialiser<D> serialiser) {
+    protected AbstractResponseTypeAdapter(final Class<D> type) {
         this.type = type;
-        this.constructor = constructor;
-        this.deserialiser = deserialiser;
-        this.serialiser = serialiser;
     }
 
     @Override
@@ -70,9 +61,9 @@ public abstract class AbstractResponseTypeAdapter<D> implements TypeAdapter<Resp
         final boolean error = getBoolean(response, ERROR);
         final int code = getInt(response, CODE);
         final String message = getString(response, MESSAGE);
-        final D data = this.deserialiser.deserialise(response, context, this.type, DATA);
+        final D data = this.deserialiseData(response, context, this.type, DATA);
 
-        return this.constructor.create(error, code, message, data);
+        return this.createResponse(error, code, message, data);
     }
 
     @Override
@@ -84,22 +75,14 @@ public abstract class AbstractResponseTypeAdapter<D> implements TypeAdapter<Resp
         response.addProperty(ERROR, src.isError());
         response.addProperty(CODE, src.getCode());
         response.addProperty(MESSAGE, src.getMessage().orElse(null));
-        response.add(DATA, this.serialiser.serialise(src, context, this.type));
+        response.add(DATA, this.serialiseData(src, context, this.type));
         return response;
     }
 
-    @FunctionalInterface
-    public interface ResponseSupplier<D> {
-        Response<D> create(final boolean error, final int code, final String message, final D data);
-    }
+    protected abstract Response<D> createResponse(final boolean error, final int code, final String message, final D data);
 
-    @FunctionalInterface
-    public interface DataDeserialiser<D> {
-        D deserialise(final JsonObject json, final JsonDeserializationContext ctx, final Class<D> type, final String key);
-    }
+    protected abstract D deserialiseData(final JsonObject json, final JsonDeserializationContext ctx, final Class<D> type, final String key);
 
-    @FunctionalInterface
-    public interface DataSerialiser<D> {
-        JsonElement serialise(final Response<D> src, final JsonSerializationContext ctx, final Class<D> type);
-    }
+    protected abstract JsonElement serialiseData(final Response<D> src, final JsonSerializationContext ctx, final Class<D> type);
+
 }

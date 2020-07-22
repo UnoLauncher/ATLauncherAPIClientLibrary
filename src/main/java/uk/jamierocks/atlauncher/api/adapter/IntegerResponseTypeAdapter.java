@@ -26,21 +26,36 @@ package uk.jamierocks.atlauncher.api.adapter;
 
 import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
 
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
 import uk.jamierocks.atlauncher.api.IntegerResponse;
+import uk.jamierocks.atlauncher.api.Response;
 
 public class IntegerResponseTypeAdapter extends AbstractResponseTypeAdapter<Integer> {
 
     public IntegerResponseTypeAdapter() {
-        super(
-                Integer.class,
-                IntegerResponse::new,
-                ((response, ctx, type1, key) -> getInt(response, key)),
-                (response, ctx, type1) -> response.getData().isPresent() ?
-                        new JsonPrimitive(response.getData().get()) :
-                        JsonNull.INSTANCE
-        );
+        super(Integer.class);
+    }
+
+    @Override
+    protected Response<Integer> createResponse(final boolean error, final int code, final String message, final Integer data) {
+        return new IntegerResponse(error, code, message, data);
+    }
+
+    @Override
+    protected Integer deserialiseData(final JsonObject json, final JsonDeserializationContext ctx, final Class<Integer> type, final String key) {
+        return getInt(json, key);
+    }
+
+    @Override
+    protected JsonElement serialiseData(final Response<Integer> src, final JsonSerializationContext ctx, final Class<Integer> type) {
+        return src.getData().isPresent() ?
+                new JsonPrimitive(src.getData().get()) :
+                JsonNull.INSTANCE;
     }
 
 }

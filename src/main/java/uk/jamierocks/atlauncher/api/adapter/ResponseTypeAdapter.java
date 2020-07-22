@@ -26,20 +26,40 @@ package uk.jamierocks.atlauncher.api.adapter;
 
 import static me.jamiemansfield.gsonsimple.GsonObjects.getObject;
 
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import uk.jamierocks.atlauncher.api.Response;
 
 public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
 
+    private final ResponseSupplier<D> constructor;
+
     public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
-        super(
-                type,
-                constructor,
-                (json, ctx, type1, key) -> {
-                    final JsonObject obj = getObject(json, key);
-                    return ctx.deserialize(obj, type1);
-                },
-                (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
-        );
+        super(type);
+        this.constructor = constructor;
+    }
+
+    @Override
+    protected Response<D> createResponse(final boolean error, final int code, final String message, final D data) {
+        return this.constructor.create(error, code, message, data);
+    }
+
+    @Override
+    protected D deserialiseData(final JsonObject json, final JsonDeserializationContext ctx, final Class<D> type, final String key) {
+        final JsonObject obj = getObject(json, key);
+        return ctx.deserialize(obj, type);
+    }
+
+    @Override
+    protected JsonElement serialiseData(final Response<D> src, final JsonSerializationContext ctx, final Class<D> type) {
+        return ctx.serialize(src.getData().orElse(null), type);
+    }
+
+    @FunctionalInterface
+    public interface ResponseSupplier<D> {
+        Response<D> create(final boolean error, final int code, final String message, final D data);
     }
 
 }

@@ -25,33 +25,51 @@
 package uk.jamierocks.atlauncher.api.adapter;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
 import com.google.gson.reflect.TypeToken;
 import me.jamiemansfield.gsonsimple.GsonObjects;
+import uk.jamierocks.atlauncher.api.Response;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List<D>> {
 
+    private final ResponseSupplier<List<D>> constructor;
+
     public ListResponseTypeAdapter(final Class<D> type, final ResponseSupplier<List<D>> constructor) {
-        super(
-                (Class<List<D>>) new TypeToken<List<D>>() {}.getRawType(),
-                constructor,
-                (json, ctx, type1, key) -> {
-                    final JsonArray arr = GsonObjects.getArray(json, key);
-                    final List<D> list = new ArrayList<>();
-                    for (final JsonElement element : arr) {
-                        list.add(ctx.deserialize(element, type1));
-                    }
-                    return list;
-                },
-                (src, ctx, type1) -> {
-                    final JsonArray json = new JsonArray();
-                    src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, type))));
-                    return json;
-                }
-        );
+        super((Class<List<D>>) new TypeToken<List<D>>() {}.getRawType());
+        this.constructor = constructor;
+    }
+
+    @Override
+    protected Response<List<D>> createResponse(final boolean error, final int code, final String message, final List<D> data) {
+        return this.constructor.create(error, code, message, data);
+    }
+
+    @Override
+    protected List<D> deserialiseData(final JsonObject json, final JsonDeserializationContext ctx, final Class<List<D>> type, final String key) {
+        final JsonArray arr = GsonObjects.getArray(json, key);
+        final List<D> list = new ArrayList<>();
+        for (final JsonElement element : arr) {
+            list.add(ctx.deserialize(element, type));
+        }
+        return list;
+    }
+
+    @Override
+    protected JsonElement serialiseData(final Response<List<D>> src, final JsonSerializationContext ctx, final Class<List<D>> type) {
+        final JsonArray json = new JsonArray();
+        src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, type))));
+        return json;
+    }
+
+    @FunctionalInterface
+    public interface ResponseSupplier<D> {
+        Response<D> create(final boolean error, final int code, final String message, final D data);
     }
 
 }
