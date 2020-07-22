@@ -24,6 +24,8 @@
 
 package uk.jamierocks.atlauncher.api.v1.adapter;
 
+import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -48,9 +50,9 @@ public class DownloadStatisticsTypeAdapter implements TypeAdapter<DownloadStatis
         if (!json.isJsonObject()) throw new JsonParseException("Malformed download statistics, must be an object!");
         final JsonObject stats = json.getAsJsonObject();
 
-        final int exe = TypeAdapter.getInt(stats, EXE);
-        final int jar = TypeAdapter.getInt(stats, JAR);
-        final int zip = TypeAdapter.getInt(stats, ZIP);
+        final int exe = getInt(stats, EXE);
+        final int jar = getInt(stats, JAR);
+        final int zip = getInt(stats, ZIP);
 
         return new DownloadStatistics(exe, jar, zip);
     }

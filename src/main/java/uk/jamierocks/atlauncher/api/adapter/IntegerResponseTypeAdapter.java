@@ -24,6 +24,8 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
+import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
+
 import com.google.gson.JsonNull;
 import com.google.gson.JsonPrimitive;
 import uk.jamierocks.atlauncher.api.IntegerResponse;
@@ -34,7 +36,7 @@ public class IntegerResponseTypeAdapter extends AbstractResponseTypeAdapter<Inte
         super(
                 Integer.class,
                 IntegerResponse::new,
-                ((response, ctx, type1, key) -> TypeAdapter.getInt(response, key)),
+                ((response, ctx, type1, key) -> getInt(response, key)),
                 (response, ctx, type1) -> response.getData().isPresent() ?
                         new JsonPrimitive(response.getData().get()) :
                         JsonNull.INSTANCE

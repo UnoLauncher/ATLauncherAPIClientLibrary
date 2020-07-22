@@ -24,6 +24,10 @@
 
 package uk.jamierocks.atlauncher.api.v1.adapter;
 
+import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
+import static me.jamiemansfield.gsonsimple.GsonObjects.getLong;
+import static me.jamiemansfield.gsonsimple.GsonObjects.getString;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -50,11 +54,11 @@ public class NewsArticleTypeAdapter implements TypeAdapter<NewsArticle> {
         if (!json.isJsonObject()) throw new JsonParseException("Malformed news article, must be an object!");
         final JsonObject article = json.getAsJsonObject();
 
-        final String title = TypeAdapter.getString(article, TITLE);
-        final int comments = TypeAdapter.getInt(article, COMMENTS);
-        final String link = TypeAdapter.getString(article, LINK);
-        final Instant publishedAt = Instant.ofEpochSecond(TypeAdapter.getLong(article, PUBLISHED_AT));
-        final String content = TypeAdapter.getString(article, CONTENT);
+        final String title = getString(article, TITLE);
+        final int comments = getInt(article, COMMENTS);
+        final String link = getString(article, LINK);
+        final Instant publishedAt = Instant.ofEpochSecond(getLong(article, PUBLISHED_AT));
+        final String content = getString(article, CONTENT);
 
         return new NewsArticle(title, comments, link, publishedAt, content);
     }

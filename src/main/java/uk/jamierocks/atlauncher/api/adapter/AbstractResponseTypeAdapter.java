@@ -24,6 +24,10 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
+import static me.jamiemansfield.gsonsimple.GsonObjects.getBoolean;
+import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
+import static me.jamiemansfield.gsonsimple.GsonObjects.getString;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
@@ -63,9 +67,9 @@ public abstract class AbstractResponseTypeAdapter<D> implements TypeAdapter<Resp
         if (!json.isJsonObject()) throw new JsonParseException("Malformed response, must be an object!");
         final JsonObject response = json.getAsJsonObject();
 
-        final boolean error = TypeAdapter.getBoolean(response, ERROR);
-        final int code = TypeAdapter.getInt(response, CODE);
-        final String message = TypeAdapter.getString(response, MESSAGE);
+        final boolean error = getBoolean(response, ERROR);
+        final int code = getInt(response, CODE);
+        final String message = getString(response, MESSAGE);
         final D data = this.deserialiser.deserialise(response, context, this.type, DATA);
 
         return this.constructor.create(error, code, message, data);

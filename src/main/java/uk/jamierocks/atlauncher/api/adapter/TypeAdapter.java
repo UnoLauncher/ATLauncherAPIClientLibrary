@@ -24,69 +24,9 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface TypeAdapter<T> extends JsonSerializer<T>, JsonDeserializer<T> {
-
-    static boolean getBoolean(final JsonObject obj, final String field) throws JsonParseException {
-        if (!obj.has(field) || !obj.get(field).isJsonPrimitive()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " field!");
-        }
-        return obj.get(field).getAsBoolean();
-    }
-
-    static String getString(final JsonObject obj, final String field) throws JsonParseException {
-        if (obj.has(field) && obj.get(field).isJsonNull()) return null;
-        if (!obj.has(field) || !obj.get(field).isJsonPrimitive()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " field!");
-        }
-        return obj.get(field).getAsString();
-    }
-
-    static int getInt(final JsonObject obj, final String field) throws JsonParseException {
-        if (!obj.has(field) || !obj.get(field).isJsonPrimitive()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " field!");
-        }
-        return obj.get(field).getAsInt();
-    }
-
-    static long getLong(final JsonObject obj, final String field) throws JsonParseException {
-        if (!obj.has(field) || !obj.get(field).isJsonPrimitive()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " field!");
-        }
-        return obj.get(field).getAsLong();
-    }
-
-    static <D> D getObject(final JsonObject obj,
-                          final JsonDeserializationContext context,
-                          final Class<D> type,
-                          final String field) throws JsonParseException {
-        if (obj.has(field) && obj.get(field).isJsonNull()) return null;
-        if (!obj.has(field) || !obj.get(field).isJsonObject()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " field!");
-        }
-        return context.deserialize(obj.get(field), type);
-    }
-
-    static <D> List<D> getList(final JsonObject obj,
-                               final JsonDeserializationContext context,
-                               final Class<D> type,
-                               final String field) {
-        if (!obj.has(field) || !obj.get(field).isJsonArray()) {
-            throw new JsonParseException("Malformed type, missing or malformed " + field + " array!");
-        }
-        final JsonArray array = obj.get(field).getAsJsonArray();
-        final List<D> list = new ArrayList<>();
-        array.forEach(json -> list.add(context.deserialize(json, type)));
-        return list;
-    }
 
 }

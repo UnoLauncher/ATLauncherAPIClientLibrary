@@ -25,8 +25,11 @@
 package uk.jamierocks.atlauncher.api.adapter;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import me.jamiemansfield.gsonsimple.GsonObjects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List<D>> {
@@ -35,7 +38,14 @@ public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List
         super(
                 (Class<List<D>>) new TypeToken<List<D>>() {}.getRawType(),
                 constructor,
-                (json, ctx, type1, key) -> TypeAdapter.getList(json, ctx, type, key),
+                (json, ctx, type1, key) -> {
+                    final JsonArray arr = GsonObjects.getArray(json, key);
+                    final List<D> list = new ArrayList<>();
+                    for (final JsonElement element : arr) {
+                        list.add(ctx.deserialize(element, type1));
+                    }
+                    return list;
+                },
                 (src, ctx, type1) -> {
                     final JsonArray json = new JsonArray();
                     src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, type))));

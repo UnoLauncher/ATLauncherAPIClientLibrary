@@ -24,13 +24,20 @@
 
 package uk.jamierocks.atlauncher.api.adapter;
 
+import static me.jamiemansfield.gsonsimple.GsonObjects.getObject;
+
+import com.google.gson.JsonObject;
+
 public class ResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<D> {
 
     public ResponseTypeAdapter(final Class<D> type, final ResponseSupplier<D> constructor) {
         super(
                 type,
                 constructor,
-                TypeAdapter::getObject,
+                (json, ctx, type1, key) -> {
+                    final JsonObject obj = getObject(json, key);
+                    return ctx.deserialize(obj, type1);
+                },
                 (response, ctx, type1) -> ctx.serialize(response.getData().orElse(null), type1)
         );
     }
