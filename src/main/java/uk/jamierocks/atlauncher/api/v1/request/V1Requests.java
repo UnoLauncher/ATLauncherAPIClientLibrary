@@ -38,8 +38,6 @@ import uk.jamierocks.atlauncher.api.v1.model.SimplePack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackFile;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackVersion;
-import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerPackVersion;
-import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerShareCode;
 import uk.jamierocks.atlauncher.api.v1.request.response.V1Responses;
 
 import java.util.List;
@@ -150,36 +148,6 @@ public final class V1Requests {
                 GetRequest.builder("/v1/admin/packs/", V1Responses.Admin.Get.Packs.class);
 
         private Admin() {
-        }
-
-    }
-
-    /**
-     * A psuedo-enum of partner {@link Request}s.
-     *
-     * @author Jamie Mansfield
-     */
-    public static class Partner {
-
-        public static final GetRequest.Builder<Pack> PACK =
-                GetRequest.builder("/v1/psp/pack/%s/", V1Responses.Partner.Get.Pack.class);
-
-        public static final GetRequest.Builder<PartnerPackVersion> PACK_VERSION =
-                GetRequest.builder("/v1/psp/pack/%s/%s/", V1Responses.Partner.Get.PackVersion.class);
-
-        public static final GetRequest.Builder<List<Pack>> ALL_PACKS =
-                GetRequest.builder("/v1/psp/packs/all/", V1Responses.Partner.Get.AllPacks.class);
-
-        public static final GetRequest.Builder<List<Pack>> PUBLIC_PACKS =
-                GetRequest.builder("/v1/psp/packs/public/", V1Responses.Partner.Get.PublicPacks.class);
-
-        public static final GetRequest.Builder<List<Pack>> SEMI_PUBLIC_PACKS =
-                GetRequest.builder("/v1/psp/packs/semipublic/", V1Responses.Partner.Get.SemiPublicPacks.class);
-
-        public static final GetRequest.Builder<PartnerShareCode> SHARE_CODE =
-                GetRequest.builder("/v1/psp/share-code/%s/", V1Responses.Partner.Get.ShareCode.class);
-
-        private Partner() {
         }
 
     }

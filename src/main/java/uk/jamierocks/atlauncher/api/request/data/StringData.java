@@ -25,7 +25,7 @@
 package uk.jamierocks.atlauncher.api.request.data;
 
 /**
- * Represents a <a href="https://wiki.atlauncher.com/api:json_data_string>JSON data String</a>.
+ * Represents a <a href="https://wiki.atlauncher.com/api:json_data_string">JSON data String</a>.
  *
  * @author Jamie Mansfield
  * @since 2.0.0

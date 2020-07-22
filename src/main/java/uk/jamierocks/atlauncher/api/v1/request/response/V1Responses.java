@@ -33,8 +33,6 @@ import uk.jamierocks.atlauncher.api.v1.model.SimplePack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPack;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackFile;
 import uk.jamierocks.atlauncher.api.v1.model.admin.AdminPackVersion;
-import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerPackVersion;
-import uk.jamierocks.atlauncher.api.v1.model.partner.PartnerShareCode;
 
 import java.util.List;
 
@@ -309,78 +307,6 @@ public final class V1Responses {
             public static final class PackAllowedPlayers extends Response<List<String>> {
 
                 public PackAllowedPlayers(final boolean error, final int code, final String message, final List<String> data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-        }
-
-    }
-
-    /**
-     * A list of all the available partner responses, as part of the v1 API.
-     *
-     * @author Jamie Mansfield
-     */
-    public static class Partner {
-
-        private Partner() {
-        }
-
-        /**
-         * A list of all the GET responses, as part of the partner v1 API.
-         *
-         * @author Jamie Mansfield
-         */
-        public static class Get {
-
-            private Get() {
-            }
-
-            public static final class Pack extends Response<uk.jamierocks.atlauncher.api.v1.model.Pack> {
-
-                public Pack(final boolean error, final int code, final String message, final uk.jamierocks.atlauncher.api.v1.model.Pack data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-            public static final class PackVersion extends Response<PartnerPackVersion> {
-
-                public PackVersion(final boolean error, final int code, final String message, final PartnerPackVersion data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-            public static final class AllPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-
-                public AllPacks(final boolean error, final int code, final String message, final List<uk.jamierocks.atlauncher.api.v1.model.Pack> data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-            public static final class PublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-
-                public PublicPacks(final boolean error, final int code, final String message, final List<uk.jamierocks.atlauncher.api.v1.model.Pack> data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-            public static final class SemiPublicPacks extends Response<List<uk.jamierocks.atlauncher.api.v1.model.Pack>> {
-
-                public SemiPublicPacks(final boolean error, final int code, final String message, final List<uk.jamierocks.atlauncher.api.v1.model.Pack> data) {
-                    super(error, code, message, data);
-                }
-
-            }
-
-            public static final class ShareCode extends Response<PartnerShareCode> {
-
-                public ShareCode(final boolean error, final int code, final String message, final PartnerShareCode data) {
                     super(error, code, message, data);
                 }
 
