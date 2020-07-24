@@ -35,21 +35,15 @@ import java.time.Instant;
 public class NewsArticle {
 
     private final String title;
-    private final int comments;
-    private final String link;
-    private final Instant publishedAt;
     private final String content;
+    private final Instant createdAt;
 
     public NewsArticle(final String title,
-                       final int comments,
-                       final String link,
-                       final Instant publishedAt,
-                       final String content) {
+                       final String content,
+                       final Instant createdAt) {
         this.title = title;
-        this.comments = comments;
-        this.link = link;
-        this.publishedAt = publishedAt;
         this.content = content;
+        this.createdAt = createdAt;
     }
 
     /**
@@ -62,39 +56,21 @@ public class NewsArticle {
     }
 
     /**
-     * Gets the amount of comments for the article.
-     *
-     * @return The amount of comments
-     */
-    public int getComments() {
-        return this.comments;
-    }
-
-    /**
-     * Gets the link of the news article.
-     *
-     * @return The link
-     */
-    public String getLink() {
-        return this.link;
-    }
-
-    /**
-     * Gets the date the article was published
-     *
-     * @return The date published
-     */
-    public Instant getPublishedAt() {
-        return this.publishedAt;
-    }
-
-    /**
      * Gets the content of the news article.
      *
      * @return The content
      */
     public String getContent() {
         return this.content;
+    }
+
+    /**
+     * Gets the date the article was created
+     *
+     * @return The date created
+     */
+    public Instant getCreatedAt() {
+        return this.createdAt;
     }
 
 }

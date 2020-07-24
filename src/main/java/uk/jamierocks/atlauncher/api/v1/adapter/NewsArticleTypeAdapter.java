@@ -24,7 +24,6 @@
 
 package uk.jamierocks.atlauncher.api.v1.adapter;
 
-import static me.jamiemansfield.gsonsimple.GsonObjects.getInt;
 import static me.jamiemansfield.gsonsimple.GsonObjects.getLong;
 import static me.jamiemansfield.gsonsimple.GsonObjects.getString;
 
@@ -38,14 +37,13 @@ import uk.jamierocks.atlauncher.api.v1.model.NewsArticle;
 
 import java.lang.reflect.Type;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 public class NewsArticleTypeAdapter implements TypeAdapter<NewsArticle> {
 
     private static final String TITLE = "title";
-    private static final String COMMENTS = "comments";
-    private static final String LINK = "link";
-    private static final String PUBLISHED_AT = "published_at";
     private static final String CONTENT = "content";
+    private static final String CREATED_AT = "created_at";
 
     @Override
     public NewsArticle deserialize(final JsonElement json,
@@ -55,12 +53,10 @@ public class NewsArticleTypeAdapter implements TypeAdapter<NewsArticle> {
         final JsonObject article = json.getAsJsonObject();
 
         final String title = getString(article, TITLE);
-        final int comments = getInt(article, COMMENTS);
-        final String link = getString(article, LINK);
-        final Instant publishedAt = Instant.ofEpochSecond(getLong(article, PUBLISHED_AT));
         final String content = getString(article, CONTENT);
+        final Instant createdAt = Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(getString(article, CREATED_AT)));
 
-        return new NewsArticle(title, comments, link, publishedAt, content);
+        return new NewsArticle(title, content, createdAt);
     }
 
     @Override
@@ -69,10 +65,8 @@ public class NewsArticleTypeAdapter implements TypeAdapter<NewsArticle> {
                                  final JsonSerializationContext context) {
         final JsonObject object = new JsonObject();
         object.addProperty(TITLE, src.getTitle());
-        object.addProperty(COMMENTS, src.getComments());
-        object.addProperty(LINK, src.getLink());
-        object.addProperty(PUBLISHED_AT, src.getPublishedAt().getEpochSecond());
         object.addProperty(CONTENT, src.getContent());
+        object.addProperty(CREATED_AT, DateTimeFormatter.ISO_DATE_TIME.format(src.getCreatedAt()));
         return object;
     }
 

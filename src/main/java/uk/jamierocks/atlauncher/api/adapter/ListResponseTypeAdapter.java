@@ -38,10 +38,12 @@ import java.util.List;
 
 public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List<D>> {
 
+    private final Class<D> type;
     private final ResponseSupplier<List<D>> constructor;
 
     public ListResponseTypeAdapter(final Class<D> type, final ResponseSupplier<List<D>> constructor) {
         super((Class<List<D>>) new TypeToken<List<D>>() {}.getRawType());
+        this.type = type;
         this.constructor = constructor;
     }
 
@@ -55,7 +57,7 @@ public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List
         final JsonArray arr = GsonObjects.getArray(json, key);
         final List<D> list = new ArrayList<>();
         for (final JsonElement element : arr) {
-            list.add(ctx.deserialize(element, type));
+            list.add(ctx.deserialize(element, this.type));
         }
         return list;
     }
@@ -63,7 +65,7 @@ public class ListResponseTypeAdapter<D> extends AbstractResponseTypeAdapter<List
     @Override
     protected JsonElement serialiseData(final Response<List<D>> src, final JsonSerializationContext ctx, final Class<List<D>> type) {
         final JsonArray json = new JsonArray();
-        src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, type))));
+        src.getData().ifPresent(list -> list.forEach(entry -> json.add(ctx.serialize(entry, this.type))));
         return json;
     }
 

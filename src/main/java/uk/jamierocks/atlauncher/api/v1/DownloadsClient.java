@@ -1,5 +1,5 @@
 /*
- * This file is part of ATLauncherAPIthis.serviceLibrary, licensed under the MIT License (MIT).
+ * This file is part of ATLauncherAPIClientLibrary, licensed under the MIT License (MIT).
  *
  * Copyright (c) 2015-2020, Jamie Mansfield <https://www.jamierocks.uk/>
  *
